@@ -7,6 +7,8 @@
 - [LCP 02. 分式化简](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/LCP02.md), 221109.
 - [LCP 01. 猜数字](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/LCP01.md), 221110.
 - [118. 杨辉三角](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/118.md), 221110.
+- [1909. 删除一个元素使数组严格递增](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1909.md), 221111.
+- [401. 二进制手表](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/401.md), 221111.
 
 ## Medium
 - [2. 两数相加](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/2.md), 221108.
