@@ -9,8 +9,10 @@
 - [118. 杨辉三角](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/118.md), 221110.
 - [1909. 删除一个元素使数组严格递增](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1909.md), 221111.
 - [401. 二进制手表](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/401.md), 221111.
+- [2269. 找到一个数字的 K 美丽值](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/2269.md), 221111.
 
 ## Medium
 - [2. 两数相加](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/2.md), 221108.
 - [416. 分割等和子集](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/416.md), 221109.
 - [117. 填充每个节点的下一个右侧节点指针 II](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/117.md), 221110.
+- [454. 四数相加 II](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/454.md), 221111.
