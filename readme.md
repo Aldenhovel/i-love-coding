@@ -1,6 +1,7 @@
 # 目录
 
 ## Easy
+- [605. 种花问题](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/605.md), 221112.
 - [2269. 找到一个数字的 K 美丽值](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/2269.md), 221111.
 - [401. 二进制手表](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/401.md), 221111.
 - [1909. 删除一个元素使数组严格递增](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1909.md), 221111.
