@@ -12,6 +12,7 @@
 - [226. 翻转二叉树](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/226.md), 221108.
 
 ## Medium
+- [229. 多数元素 II](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/229.md), 221111.
 - [454. 四数相加 II](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/454.md), 221111.
 - [117. 填充每个节点的下一个右侧节点指针 II](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/117.md), 221110.
 - [416. 分割等和子集](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/416.md), 221109.
