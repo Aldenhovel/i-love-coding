@@ -1,6 +1,7 @@
 # 目录
 
 ## Easy
+- [1758. 生成交替二进制字符串的最少操作数](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1758.md), 221113.
 - [605. 种花问题](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/605.md), 221112.
 - [2269. 找到一个数字的 K 美丽值](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/2269.md), 221111.
 - [401. 二进制手表](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/401.md), 221111.
