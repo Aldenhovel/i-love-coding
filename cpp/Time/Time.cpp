@@ -1,6 +1,7 @@
 #include "Time.h"
 
 using namespace Demos;
+
 Time::Time() {
 	hours = 0;
 	minutes = 0;
@@ -54,3 +55,23 @@ Time Time::operator*(double n) const {
 void Time::show() const {
 	cout << hours << " hr(s), " << minutes << " min(s)" << endl;
 }
+
+Time Demos::operator*(double n, const Time &t) {
+	Time res;
+	long tot = n * (t.minutes + 60 * t.hours);
+	res.minutes = tot / 60;
+	res.hours = tot % 60;
+	return res;
+}
+
+ostream& Demos::operator<<(ostream& os, const Time &t) {
+	os << t.hours << " hr(s), " << t.minutes << " min(s)" << endl;
+	return os;
+}
+
+int main() {
+	Time t1 = Time(1, 2);
+	Time t2 = Time(3, 4);
+	(t1 + t2).show();
+}
+
