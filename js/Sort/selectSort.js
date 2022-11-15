@@ -10,15 +10,15 @@ function reverse(nums) {
     return nums;
 }
 
-function bubbleSort(nums, asc) {
-    for (var i=1; i<nums.length; i++) {
-        for (var j=1; j<nums.length-i+1; j++) {
-            if (nums[j] < nums[j-1]) [nums[j], nums[j-1]] = [nums[j-1], nums[j]];
+function selectSort(nums, asc) {
+    for (var i=0; i<nums.length; i++) {
+        for (var j=i+1; j<nums.length; j++) {
+            if (nums[i] > nums[j]) nums = swap(nums, i, j);
         }
     }
     if (!asc) nums = reverse(nums);
     return nums;
 }
 
-var res = bubbleSort([2,4,1,2], false);
+var res = selectSort([2,4,1,2], false);
 console.log(res);
