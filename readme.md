@@ -1,7 +1,7 @@
 ## 代码分类
-- [:star: Python :star:](https://github.com/Aldenhovel/i-love-coding/tree/main/py)
-- [:star: C++ :star:](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp)
-- [:star: JavaScript :star:](https://github.com/Aldenhovel/i-love-coding/tree/main/js)
+- [:four_leaf_clover: Python](https://github.com/Aldenhovel/i-love-coding/tree/main/py)
+- [:cake: C / C++](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp)
+- [:pineapple: JavaScript](https://github.com/Aldenhovel/i-love-coding/tree/main/js)
 
 ## 题目
 ### Easy
