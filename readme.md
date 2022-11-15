@@ -1,6 +1,10 @@
-# 目录
+## 代码分类
+- [:star: Python :star:](https://github.com/Aldenhovel/i-love-coding/tree/main/py)
+- [:star: C++ :star:](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp)
+- [:star: JavaScript :star:](https://github.com/Aldenhovel/i-love-coding/tree/main/js)
 
-## Easy
+## 题目
+### Easy
 - [1827. 最少操作使数组递增](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1827.md), 221112.
 - [1758. 生成交替二进制字符串的最少操作数](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1758.md), 221113.
 - [605. 种花问题](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/605.md), 221112.
@@ -14,7 +18,7 @@
 - [1684. 统计一致字符串的数目](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1684.md), 221108.
 - [226. 翻转二叉树](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/226.md), 221108.
 
-## Medium
+### Medium
 - [1759. 统计同构子字符串的数目](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/1759.md), 221113.
 - [剑指 Offer II 049. 从根节点到叶节点的路径数字之和](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/offer049.md), 221112.
 - [1024. 视频拼接](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/1024.md), 221112.
