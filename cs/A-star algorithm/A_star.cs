@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace AI {
+namespace AStar {
     class Node {
 
         public string node_name;
@@ -14,10 +14,7 @@ namespace AI {
         public string parents_name;
         public int H;
 
-        public Node() {
-
-        }
-
+        public Node() {  }
         public Node(string name, int H) {
             this.node_name = name;
             this.comsume = 0;
@@ -76,6 +73,7 @@ namespace AI {
             }
             return null;
         }
+
         public Node GetNode(string node_name, CLOSE close) {
             //输入：要查找的节点名字，当前CLOSE表
             //输出：名字对应的节点实体
@@ -87,6 +85,7 @@ namespace AI {
             }
             return null;
         }
+
         public Node GetNode(string node_name, Node[] nodes) {
             //输入：要查找的节点名字，全体节点成员
             //输出：名字对应的节点实体
@@ -98,7 +97,6 @@ namespace AI {
             }
             return null;
         }
-
     }
 
     class Edge {
@@ -107,9 +105,7 @@ namespace AI {
         public string node2;
         public int cost;
 
-        public Edge() {
-
-        }
+        public Edge() {  }
         public Edge(string node1,string node2,int cost) {
             this.node1 = node1;
             this.node2 = node2;
@@ -125,7 +121,6 @@ namespace AI {
             }
             return cost;
         }
-
     }
 
     class OPEN {
@@ -319,9 +314,7 @@ namespace AI {
 
     class A_star {
 
-        public A_star() {
-
-        }
+        public A_star() {  }
 
         public static CLOSE Run(Node[] nodes, Edge[] edges, string start_name, string end_name,bool show_process=false) {
             //A*算法
@@ -412,7 +405,6 @@ namespace AI {
                     Console.WriteLine("\n\n\n\n");
                 }
             }
-
             //返回目标CLOSE表
             return close;
         }
@@ -421,15 +413,7 @@ namespace AI {
             Console.WriteLine("最终路径图（a>>b表示a指向b的路径）：");
             CLOSE.Show(close);
         }
-
-
-
     }
-   
-
-
-
-
-}//namespace
+}
 
 

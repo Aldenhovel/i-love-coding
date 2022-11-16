@@ -43,7 +43,7 @@ namespace AI {
 
 
 
-                 CLOSE finally_close = A_star.Run(nodes1, edges1, "s", "g",true);
+                CLOSE finally_close = A_star.Run(nodes1, edges1, "s", "g",true);
                 A_star.Show(finally_close);
             }
 
@@ -121,11 +121,7 @@ namespace AI {
 
             }
 
-
             Console.ReadLine();
         }
     }
-
-  
-
 }
