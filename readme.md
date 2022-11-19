@@ -6,6 +6,7 @@
 
 ## 题目
 ### Easy
+- 剑指 Offer II 032. 有效的变位词
 - 1629
 - [1827. 最少操作使数组递增](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1827.md)
 - [1758. 生成交替二进制字符串的最少操作数](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1758.md)
