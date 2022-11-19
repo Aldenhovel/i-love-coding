@@ -6,6 +6,7 @@
 
 ## 题目
 ### Easy
+- 1629
 - [1827. 最少操作使数组递增](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1827.md)
 - [1758. 生成交替二进制字符串的最少操作数](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1758.md)
 - [605. 种花问题](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/605.md)
