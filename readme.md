@@ -6,8 +6,8 @@
 
 ## 题目
 ### Easy
-- 剑指 Offer II 032. 有效的变位词
-- 1629
+- [剑指 Offer II 032. 有效的变位词](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/offer032.md)
+- [1629. 按键持续时间最长的键](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1629.md)
 - [1827. 最少操作使数组递增](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1827.md)
 - [1758. 生成交替二进制字符串的最少操作数](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1758.md)
 - [605. 种花问题](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/605.md)
@@ -22,9 +22,7 @@
 - [226. 翻转二叉树](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/226.md)
 
 ### Medium
-
-- 858
-
+- [858. 镜面反射](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/858.md)
 - [1759. 统计同构子字符串的数目](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/1759.md)
 - [剑指 Offer II 049. 从根节点到叶节点的路径数字之和](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/offer049.md)
 - [1024. 视频拼接](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/1024.md)
