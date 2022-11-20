@@ -4,6 +4,7 @@
 
 ## 指南
 
+- `Point` 展示了关键字 `explicit` 的使用场景，即限制隐式类型转化。
 - `Sort` 收集了常见的一些排序算法。
 - `Time` 改编自《C++ Primer Plus》，示范了类的基础使用方法。
 - `TennisPlayer` 改编自《C++ Primer Plus》，示范了基础的继承、虚函数的使用方法。
