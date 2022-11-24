@@ -8,5 +8,5 @@
 - `Sort` 收集了常见的一些排序算法。
 - `Time` 改编自《C++ Primer Plus》，示范了类的基础使用方法。
 - `TennisPlayer` 改编自《C++ Primer Plus》，示范了基础的继承、虚函数的使用方法。
-
 - `Worker` 通过 `Worker-->virtual Singer` , `Worker-->virtual Waiter` , `Singer, Waiter-->SingingWaiter` 来展示虚基类和多重继承的语法、以及需要注意的事项。
+- `Stack` 展示了类模板的构造方法。
