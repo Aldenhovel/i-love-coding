@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// 使用两个模板类
 template<class K, class V>
 class Pair {
 private:
@@ -17,6 +18,7 @@ public:
 	V Value() const { return value; }
 };
 
+// 写函数时也是需要写两个模板类 <K, V>
 template<class K, class V>
 K& Pair<K, V>::Key() {
 	return key;
@@ -34,7 +36,7 @@ int main() {
 		Pair<string, int>("cc", 12)
 	};
 	for (auto item : ratings) {
-		cout << "Key: " << item.Key << " Value: " << item.Value << endl;
+		cout << "Key: " << item.Key() << " Value: " << item.Value() << endl;
 	}
 	return 0;
 }
