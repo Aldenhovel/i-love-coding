@@ -31,7 +31,7 @@ public:
 
 Grand* GetOne() {
 	// 随机生成 Grand Superb Magnificent 三个类中的一个
-	Grand *p;
+	Grand *p = 0;
 	switch(std::rand() % 3) {
 		case 0:
 			p = new Grand(std::rand() % 100);
@@ -50,10 +50,31 @@ int main() {
 	Grand *pg;
 	Superb *ps;
 	for (int i = 0; i < 5; i++) {
+		cout << "*******************" << endl;
 		pg = GetOne();
 		pg->Speak();
 
+		// 这里尝试使用 dynamic_cast<Type>() 转换指针
+		// 结果是只有 Superb 和 Magnificent 的 pg 可以运行下面代码
+		// 这是因为继承关系是 Grand->Superb->Magnificent ，只能是将 Superb 或者 Magnificent
+		// 转换为 Superb ，当遇到 Grand* 转 Superb* 或 Magnificent* 时是不安全的， dynamic_cast 会作出限制
 		if  (ps = dynamic_cast<Superb*>(pg)) ps->Say();
 	}
 	return 0;
 }
+
+/*
+*******************
+I M Magnificent
+I hold the char R and value 36
+*******************
+I M Superb
+I hold superb value of 12
+*******************
+I M Superb
+I hold superb value of 66
+*******************
+I M Grand
+*******************
+I M Grand
+*/
