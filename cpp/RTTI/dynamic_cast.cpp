@@ -59,6 +59,9 @@ int main() {
 		// 这是因为继承关系是 Grand->Superb->Magnificent ，只能是将 Superb 或者 Magnificent
 		// 转换为 Superb ，当遇到 Grand* 转 Superb* 或 Magnificent* 时是不安全的， dynamic_cast 会作出限制
 		if  (ps = dynamic_cast<Superb*>(pg)) ps->Say();
+
+		// 这里使用 typeid() 判断某个对象是否指定对象
+		if (typeid(Magnificent) == typeid(*pg)) cout << "Yes you are really Magnificent." << endl;
 	}
 	return 0;
 }
