@@ -4,21 +4,22 @@
 
 ## 指南
 
-|      目录      | 概述                                                         |      from *C++PP*       |
-| :------------: | ------------------------------------------------------------ | :---------------------: |
-|  `Exceptions`  | 异常处理、自定义异常的使用方法。                             |                         |
-|     `Pair`     | 用类模板演示了多个模板参数的情况。                           | :ballot_box_with_check: |
-|    `Point`     | 展示了关键字 `explicit` 的使用场景，即限制隐式类型转化。     |                         |
-|   `QueueTP`    | 使用类模板的队列，包含了 `QueueTP->Node->Item` 的嵌套类。    | :ballot_box_with_check: |
-|     `RTTI`     | *Runtime Type Identification* ，包括 `dynamic_cast` `const_cast` `static_cast` `typeid` 的使用场景。 | :ballot_box_with_check: |
-|   `SmartPtr`   | 智能指针简介，包含 `auto_ptr` `shared_ptr` `unique_ptr` 。   | :ballot_box_with_check: |
-|     `Sort`     | 收集了常见的一些排序算法。                                   |                         |
-|    `Stack`     | 展示了类模板的构造方法。                                     | :ballot_box_with_check: |
-|     `Time`     | 示范了类的基础使用方法。                                     | :ballot_box_with_check: |
-|   `Tempmemb`   | 演示了成员模板（变量和函数使用模板）的使用方法。             | :ballot_box_with_check: |
-| `TempNFriend`  | 演示了类模板与友元、静态成员的特性。                         | :ballot_box_with_check: |
-| `TennisPlayer` | 示范了基础的继承、虚函数的使用方法。                         | :ballot_box_with_check: |
-|   `ValArray`   | 用于数值计算的 `valarray` 和 `slice` ，以及与 `vector` 的一些比较。 | :ballot_box_with_check: |
-|   `Volatile`   | 关键字 `volatile` 的特性：易变、原子性、不可优化。           |                         |
-|    `Worker`    | 通过 `Worker-->virtual Singer` , `Worker-->virtual Waiter` , `Singer, Waiter-->SingingWaiter` 来展示虚基类和多重继承的语法、以及需要注意的事项。 | :ballot_box_with_check: |
+|       目录        | 概述                                                         |      from *C++PP*       |
+| :---------------: | ------------------------------------------------------------ | :---------------------: |
+|   `Exceptions`    | 异常处理、自定义异常的使用方法。                             |                         |
+| `InitializerList` | C++ `initializer_list` 模板。                                | :ballot_box_with_check: |
+|      `Pair`       | 用类模板演示了多个模板参数的情况。                           | :ballot_box_with_check: |
+|      `Point`      | 展示了关键字 `explicit` 的使用场景，即限制隐式类型转化。     |                         |
+|     `QueueTP`     | 使用类模板的队列，包含了 `QueueTP->Node->Item` 的嵌套类。    | :ballot_box_with_check: |
+|      `RTTI`       | *Runtime Type Identification* ，包括 `dynamic_cast` `const_cast` `static_cast` `typeid` 的使用场景。 | :ballot_box_with_check: |
+|    `SmartPtr`     | 智能指针简介，包含 `auto_ptr` `shared_ptr` `unique_ptr` 。   | :ballot_box_with_check: |
+|      `Sort`       | 收集了常见的一些排序算法。                                   |                         |
+|      `Stack`      | 展示了类模板的构造方法。                                     | :ballot_box_with_check: |
+|      `Time`       | 示范了类的基础使用方法。                                     | :ballot_box_with_check: |
+|    `Tempmemb`     | 演示了成员模板（变量和函数使用模板）的使用方法。             | :ballot_box_with_check: |
+|   `TempNFriend`   | 演示了类模板与友元、静态成员的特性。                         | :ballot_box_with_check: |
+|  `TennisPlayer`   | 示范了基础的继承、虚函数的使用方法。                         | :ballot_box_with_check: |
+|    `ValArray`     | 用于数值计算的 `valarray` 和 `slice` ，以及与 `vector` 的一些比较。 | :ballot_box_with_check: |
+|    `Volatile`     | 关键字 `volatile` 的特性：易变、原子性、不可优化。           |                         |
+|     `Worker`      | 通过 `Worker-->virtual Singer` , `Worker-->virtual Waiter` , `Singer, Waiter-->SingingWaiter` 来展示虚基类和多重继承的语法、以及需要注意的事项。 | :ballot_box_with_check: |
 
