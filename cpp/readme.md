@@ -18,6 +18,7 @@
 |   `Tempmemb`   | 演示了成员模板（变量和函数使用模板）的使用方法。             | :ballot_box_with_check: |
 | `TempNFriend`  | 演示了类模板与友元、静态成员的特性。                         | :ballot_box_with_check: |
 | `TennisPlayer` | 示范了基础的继承、虚函数的使用方法。                         | :ballot_box_with_check: |
+|   `ValArray`   | 用于数值计算的 `valarray` 和 `slice` ，以及与 `vector` 的一些比较。 | :ballot_box_with_check: |
 |   `Volatile`   | 关键字 `volatile` 的特性：易变、原子性、不可优化。           |                         |
 |    `Worker`    | 通过 `Worker-->virtual Singer` , `Worker-->virtual Waiter` , `Singer, Waiter-->SingingWaiter` 来展示虚基类和多重继承的语法、以及需要注意的事项。 | :ballot_box_with_check: |
 
