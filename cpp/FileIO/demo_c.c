@@ -3,9 +3,9 @@
 #include <stdlib.h>
 
 /*
-*	文件指针 FILE* fp = fopen(const char* path)
-*	使用 fputs(const char* string, FILE* fp) 写入文件
-*	使用 fgets(char* buff, charcount, FILE* fp) 读取一行到 buff
+*	锟侥硷拷指锟斤拷 FILE* fp = fopen(const char* path)
+*	使锟斤拷 fputs(const char* string, FILE* fp) 写锟斤拷锟侥硷拷
+*	使锟斤拷 fgets(char* buff, charcount, FILE* fp) 锟斤拷取一锟叫碉拷 buff
 */
 
 
