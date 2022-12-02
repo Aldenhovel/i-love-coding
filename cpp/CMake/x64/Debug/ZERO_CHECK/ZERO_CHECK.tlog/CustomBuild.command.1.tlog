@@ -1,0 +1,10 @@
+^D:\GIT_REPO\I-LOVE-CODING\CPP\CMAKE\CMAKEFILES\AACCAED74E40E444174D3FE0E7D2A34A\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/git_repo/i-love-coding/cpp/CMake -BD:/git_repo/i-love-coding/cpp/CMake --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/git_repo/i-love-coding/cpp/CMake/HELLO.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
