@@ -6,7 +6,7 @@
 
 |       目录        | 概述                                                         |      from *C++PP*       |
 | :---------------: | ------------------------------------------------------------ | :---------------------: |
-|      `CMake`      | 简要地介绍了 CMake 的使用方法，如何将 C/C++ 源码编译成可执行文件。 |                         |
+|      `CMake`      | 简要地介绍了 *CMake* 的使用方法，如何将 C/C++ 源码编译成可执行文件。 |                         |
 |   `Exceptions`    | 异常处理、自定义异常的使用方法。                             |                         |
 |     `FileIO`      | 用 `fstream` 文件读写，包括 `ifstream` `ofstream` 使用方法和一些实例。 |                         |
 |     `FunPtr`      | 函数指针演示。                                               | :ballot_box_with_check: |
@@ -18,6 +18,7 @@
 |    `SmartPtr`     | 智能指针简介，包含 `auto_ptr` `shared_ptr` `unique_ptr` 。   | :ballot_box_with_check: |
 |      `Sort`       | 收集了常见的一些排序算法。                                   |                         |
 |      `Stack`      | 展示了类模板的构造方法。                                     | :ballot_box_with_check: |
+|     `String`      | 收集了 `string` 模板的常用方法，例如字符串拼接、查找、替换子串等。 |                         |
 |      `Time`       | 示范了类的基础使用方法。                                     | :ballot_box_with_check: |
 |    `Tempmemb`     | 演示了成员模板（变量和函数使用模板）的使用方法。             | :ballot_box_with_check: |
 |   `TempNFriend`   | 演示了类模板与友元、静态成员的特性。                         | :ballot_box_with_check: |
