@@ -6,6 +6,7 @@
 
 |       目录        | 概述                                                         |      from *C++PP*       |
 | :---------------: | ------------------------------------------------------------ | :---------------------: |
+|      `CMake`      | 简要地介绍了 CMake 的使用方法，如何将 C/C++ 源码编译成可执行文件。 |                         |
 |   `Exceptions`    | 异常处理、自定义异常的使用方法。                             |                         |
 |     `FileIO`      | 用 `fstream` 文件读写，包括 `ifstream` `ofstream` 使用方法和一些实例。 |                         |
 | `InitializerList` | C++ `initializer_list` 模板。                                | :ballot_box_with_check: |
