@@ -1,3 +1,7 @@
+/*
+*   演示异常处理 throw Exception
+*   自定义 Exception 
+*/
 #include <iostream>
 #include <exception>
 

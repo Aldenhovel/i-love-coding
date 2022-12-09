@@ -1,3 +1,7 @@
+/*
+*	std::initializer_list å®¹å™¨
+*	ç»å¸¸ç”¨æ¥åˆå§‹åŒ–çš„ {...} å®é™…ä¸Šå°±æ˜¯ std::initializer
+*/
 #include <iostream>
 #include <initializer_list>
 
@@ -26,8 +30,8 @@ int main() {
 	using std::cout;
 	using std::endl;
 
-	// { ... } ´ú±í initializer_list ×ÖÃæÁ¿£¬Òò´ËÖ±½Ó´«Èë initializer_list ×ÖÃæÁ¿»òÕß
-	// initializer_list ±äÁ¿¶¼ĞĞ£¬µ«ĞèÒª×¢Òâ initializer_list::iterator Îª const ²»ÄÜĞŞ¸Ä
+	// { ... } Â´ÃºÂ±Ã­ initializer_list Ã—Ã–ÃƒÃ¦ÃÂ¿Â£Â¬Ã’Ã²Â´Ã‹Ã–Â±Â½Ã“Â´Â«ÃˆÃ« initializer_list Ã—Ã–ÃƒÃ¦ÃÂ¿Â»Ã²Ã•ÃŸ
+	// initializer_list Â±Ã¤ÃÂ¿Â¶Â¼ÃÃÂ£Â¬ÂµÂ«ÃÃ¨Ã’ÂªÃ—Â¢Ã’Ã¢ initializer_list::iterator ÃÂª const Â²Â»Ã„ÃœÃÃÂ¸Ã„
 	cout << "List 1: sum = " << sum({ 2, 3, 4 })
 		<< " , avg = " << average({ 2,3,4 }) << endl;
 
@@ -35,7 +39,7 @@ int main() {
 	cout << "List 2: sum = " << sum(dl)
 		<< " , avg = " << average(dl) << endl;
 
-	// ÕâÀïÊÇ½«Ò»¸ö initializer_list ¸³¸øÁíÍâÒ»¸ö£¬Ã»ÓĞÎÊÌâ
+	// Ã•Ã¢Ã€Ã¯ÃŠÃ‡Â½Â«Ã’Â»Â¸Ã¶ initializer_list Â¸Â³Â¸Ã¸ÃÃ­ÃÃ¢Ã’Â»Â¸Ã¶Â£Â¬ÃƒÂ»Ã“ÃÃÃŠÃŒÃ¢
 	dl = { 16.0, 25.0, 36.0, 40.0, 64.0 };
 	cout << "List 3: sum = " << sum(dl)
 		<< " , avg = " << average(dl) << endl;
