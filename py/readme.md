@@ -9,4 +9,4 @@
 |   `ML`   | 关于机器学习和深度学习的组件和文档库 | :sailboat: |
 |  `Sort`  |               排序算法               |            |
 | `Spider` |             网页爬虫相关             |   :lion:   |
-
+| `Pyplot` |             Pyplot画图             |   :lion:   |
