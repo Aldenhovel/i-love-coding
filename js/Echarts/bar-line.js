@@ -90,7 +90,7 @@ option = {
       type: 'bar',
       tooltip: {
         valueFormatter: function (value) {
-          return value + ' ml';
+          return value;
         }
       },
       data: [
@@ -118,7 +118,7 @@ option = {
       yAxisIndex: 1,
       tooltip: {
         valueFormatter: function (value) {
-          return value + ' °C';
+          return value;
         }
       },
       data: [
