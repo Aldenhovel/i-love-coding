@@ -1,9 +1,9 @@
 function op(num) {
-  return 54 * num;
+  return 570 * num;
 }
 
 function op2(num) {
-  return 0.1 * num;
+  return 0.10 * num;
 }
 
 option = {
@@ -63,7 +63,7 @@ option = {
       type: 'value',
       name: '',
       min: 0,
-      max: 25000,
+      max: 250000,
       //interval: 50,
       axisLabel: {
         formatter: '{value}'
@@ -77,7 +77,7 @@ option = {
       name: '',
       min: 0,
       max: 45,
-      //interval: 50,
+      interval: 5,
       axisLabel: {
         formatter: '{value}'
       }
@@ -85,7 +85,7 @@ option = {
   ],
   series: [
     {
-      color:'red',
+      color:'#00aa00',
       name: '绿色信贷余额',
       type: 'bar',
       tooltip: {
@@ -114,6 +114,9 @@ option = {
     },
     {
       name: '绿色信贷余额同比增长',
+      color: '#dd1111',
+      symbolSize:8,
+      lineStyle:{width: 5},
       type: 'line',
       yAxisIndex: 1,
       tooltip: {
