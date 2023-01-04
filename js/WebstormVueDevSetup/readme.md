@@ -50,5 +50,5 @@
    vue ui
    ```
 
-   ![image-20230104170301654](D:\git_repo\i-love-coding\js\WebstormVueDevSetup\readme.assets\image-20230104170301654.png)
+   ![image-20230104170420728](D:\git_repo\i-love-coding\js\WebstormVueDevSetup\readme\img\image-20230104170420728.png)
 
