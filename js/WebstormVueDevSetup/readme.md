@@ -52,3 +52,28 @@
 
    ![image-20230104170609043](img/image-20230104170609043.png)
 
+## 4 创建并配置项目
+
+1. 根据指引在对应路径下初始化项目。
+
+   ![image-20230104171714765](img/image-20230104171714765.png)
+
+2. 安装 `vuetify` `vue-route` 插件
+
+   ![image-20230104172004758](img/image-20230104172004758.png)
+
+## 5 WebStorm 编程
+
+1. 在 `WebStorm` 中找到项目路径并打开项目
+
+   ![image-20230104172151861](img/image-20230104172151861.png)
+
+2. 配置 Terminal 设置，在 `File-Settings-Tools-Terminal` 中选取对应终端，因为 Powershell 和 CMD 不一样。设置好后尝试在控制台运行本项目：
+
+   ```shell
+   npm run serve
+   ```
+
+   将会自动弹出页面，完成：
+
+   ![image-20230104173235658](img/image-20230104173235658.png)
