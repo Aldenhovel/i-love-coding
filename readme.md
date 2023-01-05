@@ -1,7 +1,7 @@
 ## 代码分类
 - [:four_leaf_clover: Python](https://github.com/Aldenhovel/i-love-coding/tree/main/py)
 - [:cake: C / C++](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp)
-- [:pineapple: JavaScript](https://github.com/Aldenhovel/i-love-coding/tree/main/js)
+- [:pineapple: JavaScript / Vue.js](https://github.com/Aldenhovel/i-love-coding/tree/main/js)
 - [:airplane: C#](https://github.com/Aldenhovel/i-love-coding/tree/main/cs)
 
 ## 题目
