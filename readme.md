@@ -3,7 +3,7 @@
 - [:cake: C / C++](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp)
 - [:pineapple: JavaScript / Vue.js](https://github.com/Aldenhovel/i-love-coding/tree/main/js)
 - [:airplane: C#](https://github.com/Aldenhovel/i-love-coding/tree/main/cs)
-- [:pig: TypeScript]
+- [:flower: TypeScript]()
 
 ## 题目
 ### Easy
