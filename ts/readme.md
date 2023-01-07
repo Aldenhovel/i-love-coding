@@ -1,6 +1,6 @@
 # TypeScript
 
-存放 TypeScript 的相关代码仓库，因为不常用所以整理成笔记防止忘记，主要是 TypeScript + Vue 开发。安装 TypeScript 需要保证：
+存放 TypeScript 的相关代码仓库，因为不常用所以整理成笔记防止忘记。安装 TypeScript 需要保证：
 
 - Node.js 安装
 
@@ -19,5 +19,9 @@ tsc {filename}.ts
 
 ## 指南
 
-
+|     目录     |         描述          |      |
+| :----------: | :-------------------: | ---- |
+| `chapter_01` | TS 基本语法：变量类型 |      |
+|              |                       |      |
+|              |                       |      |
 
