@@ -21,6 +21,12 @@
    npm install cnpm -g
    ```
 
+4. 按需安装 TypeScript 支持：
+
+   ```shell
+   npm install typescript -g
+   ```
+
 ## 3 安装 Vue 及相关组件
 
 1. 控制台：
