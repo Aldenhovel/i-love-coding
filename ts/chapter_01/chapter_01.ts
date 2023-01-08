@@ -37,3 +37,7 @@ function fn2(): never {
     throw new Error("oops!");
 }
 fn2();
+
+// tuple
+let t: [string, string] = ["hello", "world"];   // 元组，固定长度固定类型
+
