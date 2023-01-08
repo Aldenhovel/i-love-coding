@@ -87,5 +87,27 @@ function fn(): never {
 }
 ```
 
+### 3.9 tuple
+
+```typescript
+// 这是在 js 里面没有的类型
+let t: [string, string];
+t = ["hello", "world"];
+```
+
+### 3.10 enum
+
+```typescript
+// js 里面没有的类型
+enum Gender {
+	male,
+	female,
+}
+let LiMing = {
+	name: "LiMing",
+	gender: Gender.male,
+}
+```
+
 
 
