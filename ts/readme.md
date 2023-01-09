@@ -40,25 +40,22 @@ tsc filename.ts -w
 
 使用 `tsconfig.json` 来配置更详细的编译设置：
 
-```json
-/*
-  	"include": [dir_path, ...], 包含哪些目录
-  	"exclude": [dir_path, ...], 不包含哪些目录
-  	"files": [file_path, ...], 包含哪些单个文件
-  	"compilerOptions": {
-  		"target": "es5", 编译目标如 比较新的"es6" 对老浏览器支持较好的"es3" 最新"es2020" 等
-  		"module": "commonjs", 编译的模块化标准如"commonjs" "es6" 等
-  		"lib": [], 使用的库如 "dom" ，一般不动
-  		"outDir": "./dist", 编译输出的文件位置，有时项目需要将 src 和 dist 分开
-  		"outFile": "./dist/app.js", 可以将编译后的所有目标合并到一起，但只能支持 module 为 amd 或 system
-  		"allowJs": false, 是否编译 js 文件，默认 false 会跳过目录下的 js 文件
-  		"checkJs": false, 是否顺便检查 js 文件语法规范
-  		"removeComments": true, 移除 ts 的注释，默认为 true
-  		"noEmit":false, 不生成编译文件（但是编译过程还是会正常进行，只是不输出文件）
-  		"noEmitOnError": false, 编译出错时不产生编译文件
-  	}
-*/
+- `"include": [dir_path, ...]` 包含哪些目录
+- `"exclude": [dir_path, ...]` 不包含哪些目录
+- `"files": [file_path, ...]` 包含哪些单个文件
+- `"compilerOptions"`
+  - `"target": "es5",` 编译目标如 比较新的"es6" 对老浏览器支持较好的"es3" 最新"es2020" 等
+  - `"module": "commonjs"` 编译的模块化标准如"commonjs" "es6" 等
+  - `"lib": []` 使用的库如 "dom" ，一般不动
+  - `"outDir": "./dist"` 编译输出的文件位置，有时项目需要将 src 和 dist 分开
+  - `"outFile": "./dist/app.js" ` 可以将编译后的所有目标合并到一起，但只能支持 module 为 amd 或 system
+  - `"allowJs": false` 是否编译 js 文件，默认 false 会跳过目录下的 js 文件
+  - `"checkJs": false` 是否顺便检查 js 文件语法规范
+  - `"removeComments": true` 移除 ts 的注释，默认为 true
+  - `"noEmit":false` 不生成编译文件（但是编译过程还是会正常进行，只是不输出文件）
+  - `"noEmitOnError": false` 编译出错时不产生编译文件
 
+```json
 {
   "compilerOptions": {
     "module": "commonjs",
