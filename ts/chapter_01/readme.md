@@ -87,7 +87,7 @@ function fn(): never {
 }
 ```
 
-### 3.9 tuple
+### 3.9 tuple 元组
 
 ```typescript
 // 这是在 js 里面没有的类型
@@ -95,7 +95,7 @@ let t: [string, string];
 t = ["hello", "world"];
 ```
 
-### 3.10 enum
+### 3.10 enum 枚举
 
 ```typescript
 // js 里面没有的类型
