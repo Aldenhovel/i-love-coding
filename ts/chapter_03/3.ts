@@ -8,12 +8,13 @@ class Person {
     public name: string;
     public age: number;
     public gender: Gender;
+    private _qq: string;
     // 只读
     readonly orgname:string;
     // 静态
     static classname: string = "person";
 
-    constructor(name: string, age?: number, gender: Gender = Gender.male) {
+    constructor(name: string, age?: number | any, gender: Gender = Gender.male) {
         // 构造函数
         this.orgname = name;
         this.name = name;
@@ -35,6 +36,14 @@ class Person {
         // 静态类方法
         return this.classname;
     }
+
+    // get set 函数可以更好地隔离 private 属性
+    get qq(): string {
+        return this._qq;
+    }
+    set qq(qq:string) {
+        this._qq = qq;
+    }
 }
 
 
@@ -44,3 +53,5 @@ LiMing.setAge(19);
 LiMing.show();
 console.log(Person.classname);
 console.log(Person.getClassName());
+LiMing.qq = "178";
+console.log(LiMing.qq);

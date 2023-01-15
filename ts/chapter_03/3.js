@@ -27,6 +27,17 @@ var Person = /** @class */ (function () {
         // 静态类方法
         return this.classname;
     };
+    Object.defineProperty(Person.prototype, "qq", {
+        // get set 函数可以更好地隔离 private 属性
+        get: function () {
+            return this._qq;
+        },
+        set: function (qq) {
+            this._qq = qq;
+        },
+        enumerable: false,
+        configurable: true
+    });
     // 静态
     Person.classname = "person";
     return Person;
@@ -37,3 +48,5 @@ LiMing.setAge(19);
 LiMing.show();
 console.log(Person.classname);
 console.log(Person.getClassName());
+LiMing.qq = "178";
+console.log(LiMing.qq);
