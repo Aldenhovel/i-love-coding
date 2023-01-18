@@ -5,7 +5,6 @@ from pandas import DataFrame
 import yaml
 from external import re_search
 import datetime
-import tushare
 import numpy as np
 
 class Grabber:
@@ -46,18 +45,19 @@ class Grabber:
         return fenshi
 
     def get_stdprice(self, code):
-        pro = tushare.pro_api(token='619804f7abf81ef80389b842c3939064155c04131b99056104d10629')
+        headers = {'referer': 'http://finance.sina.com.cn'}
         if code[:2] == '60':
-            symbol = code + '.SH'
+            code = 'sh' + code
         elif code[:2] == '30':
-            symbol = code + '.SZ'
+            code = 'sz' + code
         elif code[:2] == '00':
-            symbol = code + '.SZ'
+            code = 'sz' + code
         elif code[:2] == '68':
-            symbol = code + '.SH'
-        r = pro.daily(ts_code=symbol)
-        s = float(r['close'][0])
-        return s
+            code = 'sh' + code
+        url = f"http://hq.sinajs.cn/list={code}"
+        response = requests.get(url, headers=headers)
+        stdprice = float(response.text.split(",")[2])
+        return stdprice
 
     def get_stdfenshi(self, code):
         fenshi = self.get_fenshi(code)
@@ -69,7 +69,7 @@ class Grabber:
         with open(path, 'w', encoding='utf-8') as f:
             yaml.dump(data, f)
 
-    def sample(self, code, dirpath="data"):
+    def sample(self, code, dirpath):
         filename = f'{str(datetime.date.today())}-{code}.yaml'
         stdprice = self.get_stdprice(code)
         fenshi = self.get_fenshi(code)
@@ -83,9 +83,14 @@ class Grabber:
             'stdfenshi': stdfenshi
         }
         self._write_yaml(path, data)
+        text = f"""
+        code: {data["code"]}
+        date: {data["date"]}
+        slen: {len(data["stdfenshi"])}
+        stdp: {data["stdprice"]}
+        ssos: {data["fenshi"][0]}
+        seos: {data["fenshi"][-1]}
+        """
+        print(text)
         print("Done.")
-        return
-
-if __name__ == "__main__":
-    grabber = Grabber()
-    grabber.sample("002762")
+        return data["fenshi"]

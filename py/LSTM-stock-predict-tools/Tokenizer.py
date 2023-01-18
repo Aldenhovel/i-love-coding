@@ -14,12 +14,7 @@ class Tokenizer:
         seq = [*map(lambda x: x // self.tick + self.grid / 2, seq)]
         seq = [*map(lambda x: x if x < self.grid else self.grid, seq)]
         seq = [*map(lambda x: x if x > 0 else 0, seq)]
-        seq = [*map(lambda x: x + 1, seq)] + [self.pad] * self.maxlen
+        seqlen = len(seq)
+        seq = [seq[0] + 1] + [*map(lambda x: x + 1, seq)] + [self.pad] * self.maxlen
         seq = seq[:self.maxlen]
-        return seq
-
-if __name__ == "__main__":
-    import numpy as np
-    tk = Tokenizer(grid=50)
-    tk.show()
-    print(tk.tokenize(np.arange(-20,20)))
+        return seq, seqlen
