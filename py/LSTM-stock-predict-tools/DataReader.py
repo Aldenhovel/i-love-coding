@@ -1,5 +1,6 @@
 import os
 import yaml
+
 class DataReader:
     def __init__(self, datadir="data"):
         self.datadir = datadir

@@ -27,11 +27,14 @@ class LSTMDecoder(nn.Module):
 
         sorted_seqs = seqs[sorted_seq_indices]
 
-        h_state, c_state = self.init_h0(torch.ones(batch_size, self.vocab_size).to(self.device)), self.init_c0(
-            torch.ones(batch_size, self.vocab_size).to(self.device))
+        h_state, c_state = self.init_h0(torch.ones(batch_size, self.vocab_size).to(self.device)), \
+            self.init_c0(torch.ones(batch_size, self.vocab_size).to(self.device))
+
         h_state, c_state = h_state.unsqueeze(0).repeat(self.layer * self.bi_factor, 1, 1), \
             c_state.unsqueeze(0).repeat(self.layer * self.bi_factor, 1, 1)
+
         sorted_decode_len = sorted_seq_len.tolist()
+
         logits = torch.zeros(max(sorted_decode_len), batch_size, self.vocab_size)
         for t in range(max(sorted_decode_len)):
             batch_size_t = sum([l > t for l in sorted_decode_len])
