@@ -65,6 +65,31 @@ class Grabber:
         stdfenshi = [*map(lambda x: x / stdprice * 100 - 100, fenshi)]
         return stdfenshi
 
+    def get_wencai_codelist(rule):
+        basic_rule = '且非st且非涨停且交易额大于1亿'
+        rule += basic_rule
+        print(f'Generating rule: {rule} ... OK')
+        driver = webdriver.Chrome()
+        driver.get('https://www.iwencai.com/unifiedwap/home/index')
+        ele_search = driver.find_element(By.CLASS_NAME, 'search-input')
+        ele_search.send_keys(rule)
+        ele_su = driver.find_element(By.CLASS_NAME, 'search-icon')
+        ele_su.click()
+        time.sleep(5)
+        html = driver.page_source
+        soup = BeautifulSoup(html, features='lxml')
+        body = soup.body
+        table = body.find_all(class_='td-cell-box')
+        code_list = []
+        for i in table:
+            res = external.re_search(r'[0-9]{6}', str(i))
+            if res is not None:
+                code_list.append(res[0])
+        # browser.close()
+        code_list = list(set(code_list))
+        print(f'Got code list: ... OK amount: {len(code_list)}')
+        return code_list
+
     def _write_yaml(self, path, data):
         with open(path, 'w', encoding='utf-8') as f:
             yaml.dump(data, f)
