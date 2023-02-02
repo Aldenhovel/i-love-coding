@@ -6,6 +6,12 @@ import yaml
 from external import re_search
 import datetime
 import numpy as np
+import selenium
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
+import time
+import external
 
 class Grabber:
     def __init__(self):
@@ -64,7 +70,26 @@ class Grabber:
         stdprice = self.get_stdprice(code)
         stdfenshi = [*map(lambda x: x / stdprice * 100 - 100, fenshi)]
         return stdfenshi
-
+    
+    def clean_wencai_codelist(self):
+        with open("data/codelist.txt", "r", encoding="utf-8") as f:
+            lines = f.readlines()
+            codelist = []
+            for line in lines:
+                if external.re_search(r"[0-9]{6}", line[:-1]):
+                    codelist.append(external.re_search(r"[0-9]{6}", line[:-1])[0])
+        print(f"{len(codelist)} items found ... ")
+        return codelist
+    
+    def show_sample(self, filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = f.read()
+            data = yaml.load(data, Loader=yaml.FullLoader)
+        import matplotlib.pyplot as plt
+        fig = plt.figure()
+        plt.plot(data["stdfenshi"])
+        return
+        
     def _write_yaml(self, path, data):
         with open(path, 'w', encoding='utf-8') as f:
             yaml.dump(data, f)
@@ -91,15 +116,6 @@ class Grabber:
         ssos: {data["fenshi"][0]}
         seos: {data["fenshi"][-1]}
         """
-        # print(text)
-        return data["fenshi"]
-
-    def clean_wencai_codelist(self):
-        with open("data/codelist.txt", "r", encoding="utf-8") as f:
-            lines = f.readlines()
-            codelist = []
-            for line in lines:
-                if re_search(r"[0-9]{6}", line[:-1]):
-                    codelist.append(re_search(r"[0-9]{6}", line[:-1])[0])
-        print(f"{len(codelist)} items found ... ")
-        return codelist
+        #print(text)
+        #print("Done.")
+        return data["stdfenshi"]
