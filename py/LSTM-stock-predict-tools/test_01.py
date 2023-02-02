@@ -1,106 +1,148 @@
-import os
-import requests
-import json
-from pandas import DataFrame
-import yaml
-from external import re_search
-import datetime
+from Grabber import Grabber
+from Tokenizer import Tokenizer
+from DataReader import DataReader
+from StockDataset import StockDataset
+from Model import LSTMDecoder
+import external
+
+import torch
+import torch.nn as nn
+import matplotlib.pyplot as plt
+from torch.utils.data import DataLoader
 import numpy as np
 
-class Grabber:
-    def __init__(self):
-        pass
+def inference(seq, seqlen, model, beam_size, device):
+    model.eval()
+    model.to(device)
+    with torch.no_grad():
+        h_state, c_state = model.init_h0(torch.zeros(1, model.vocab_size).to(device)), model.init_c0(
+            torch.zeros(1, model.vocab_size).to(device))
+        h_state, c_state = h_state.unsqueeze(0).repeat(model.layer * model.bi_factor, 1, 1), c_state.unsqueeze(
+            0).repeat(model.layer * model.bi_factor, 1, 1)
+        k = beam_size
+        for i in range(seqlen):
+            current = float(seq[i].clone().detach().cpu().numpy())
+            in_id = seq[i].unsqueeze(0)
+            _, h_state, c_state = model.decode(in_id, h_state, c_state)
 
-    def get_fenshi(self, code):
-        if code[:2] == '60':
-            symbol = 'sh' + code
-            url = f'http://push2ex.eastmoney.com/getStockFenShi?pagesize=4800&ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wzfscj&cb=jQuery112403980350023749506_1627460255433&pageindex=0&id=605117&sort=1&ft=1&code={code}&market=1&_=1627460255439'
-        elif code[:2] == '30':
-            symbol = 'sz' + code
-            url = f'http://push2ex.eastmoney.com/getStockFenShi?pagesize=4800&ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wzfscj&cb=jQuery1124020373977062761606_1627641343509&pageindex=0&id=300346&sort=1&ft=1&code={code}&market=0&_=1627641343515'
-        elif code[:2] == '00':
-            symbol = 'sz' + code
-            url = f'http://push2ex.eastmoney.com/getStockFenShi?pagesize=4800&ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wzfscj&cb=jQuery112408276337240654512_1627641497200&pageindex=0&id=002340&sort=1&ft=1&code={code}&market=0&_=1627641497206'
-        elif code[:2] == '68':
-            symbol = 'sh' + code
-            url = f'http://push2ex.eastmoney.com/getStockFenShi?pagesize=4800&ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wzfscj&cb=jQuery112403458911126283384_1627641617104&pageindex=0&id=688981&sort=1&ft=1&code={code}&market=1&_=1627641617110'
+        topk_prev_tokens = torch.LongTensor([[seq[seqlen - 1]]] * k).to(device)  # [k, 1]
+        topk_sequences = topk_prev_tokens  # [k, 1]
+        topk_logps = torch.zeros(k, 1).to(device)  # [k, 1]
+        complete_sequences, complete_sequence_logps = [], []
+        h_state, c_state = h_state.repeat(1, beam_size, 1), c_state.repeat(1, beam_size, 1)
+        step = 1
+        while True:
+            logit, h_state, c_state = model.decode(topk_prev_tokens.squeeze(1), h_state, c_state)
 
-        response = requests.get(url)
-        table = json.loads(re_search(r'\(.*\)', response.text)[0][1:-1])
-        df = DataFrame(table['data']['data'])
-        df_len = len(df)
-        price_seq = []
-        for ix in range(df_len):
-            if int(df.iloc[ix]['t'] <= 92500):
-                continue
+            logp = torch.nn.functional.log_softmax(logit, dim=1)  # [k, vocab_size]
+            logp = topk_logps.expand_as(logp) + logp  # [k, vocab_size]
+            if step == 1:
+                topk_logps, topk_tokens = logp[0].topk(k, 0, True, True)  # [k,]
             else:
-                try:
-                    price = df.iloc[ix]['p'] / 1000.0
-                    price_seq.append(float(price))
+                topk_logps, topk_tokens = logp.view(-1).topk(k, 0, True, True)  # [k,]
+            prev_tokens = torch.div(topk_tokens, model.vocab_size, rounding_mode='trunc')
+            next_tokens = topk_tokens % model.vocab_size
+            topk_sequences = torch.cat((topk_sequences[prev_tokens], next_tokens.unsqueeze(1)), dim=1)  # [k, step + 1]
+            incomplete_indices = [indice for indice, next_token in enumerate(next_tokens)]
+            complete_indices = list(set(range(len(next_tokens))) - set(incomplete_indices))
+            if len(complete_indices) > 0:
+                complete_sequences.extend(topk_sequences[complete_indices].tolist())
+                complete_sequence_logps.extend(topk_logps[complete_indices])
+            k -= len(complete_indices)
+            # Proceed with incomplete sequences
+            if k == 0:
+                break
+            topk_sequences = topk_sequences[incomplete_indices]
+            h_state = h_state[:, prev_tokens[incomplete_indices], :]
+            c_state = c_state[:, prev_tokens[incomplete_indices], :]
+            topk_logps = topk_logps[incomplete_indices].unsqueeze(1)
+            topk_prev_tokens = next_tokens[incomplete_indices].unsqueeze(1)
+            if step > 10:  # (250 - seqlen):
+                if len(complete_indices) == 0:
+                    complete_sequences.extend(topk_sequences.tolist())
+                    complete_sequence_logps.extend(topk_logps[incomplete_indices])
+                break
 
-                except:
-                    print('the NO.' + str(ix) + ' row wrong!')
-        # 一般 eastmony 是每 3 秒刷新一次，所以 20 次为一分钟
-        fenshi = price_seq[::20]
-        return fenshi
+            # Update step
+            step += 1
 
-    def get_stdprice(self, code):
-        headers = {'referer': 'http://finance.sina.com.cn'}
-        if code[:2] == '60':
-            code = 'sh' + code
-        elif code[:2] == '30':
-            code = 'sz' + code
-        elif code[:2] == '00':
-            code = 'sz' + code
-        elif code[:2] == '68':
-            code = 'sh' + code
-        url = f"http://hq.sinajs.cn/list={code}"
-        response = requests.get(url, headers=headers)
-        stdprice = float(response.text.split(",")[2])
-        return stdprice
+        i_s = torch.topk(torch.Tensor(complete_sequence_logps), beam_size, sorted=True).indices
+        res = []
+        for i in i_s:
+            res_1 = [*map(lambda x: x - 1, complete_sequences[i])]
+            res.append(complete_sequences[i])
+        avgpred = sum([*map(lambda x: x[-1], res)]) / len(i_s)
+        return res, avgpred, current
 
-    def get_stdfenshi(self, code):
-        fenshi = self.get_fenshi(code)
-        stdprice = self.get_stdprice(code)
-        stdfenshi = [*map(lambda x: x / stdprice * 100 - 100, fenshi)]
-        return stdfenshi
 
-    def _write_yaml(self, path, data):
-        with open(path, 'w', encoding='utf-8') as f:
-            yaml.dump(data, f)
+def plot_res(front, res, gt=None, gtlen=None, savefig=None):
+    fig = plt.figure(figsize=[10, 5])
+    xmax = 250
 
-    def sample(self, code, dirpath):
-        filename = f'{str(datetime.date.today())}-{code}.yaml'
-        stdprice = self.get_stdprice(code)
-        fenshi = self.get_fenshi(code)
-        stdfenshi = self.get_stdfenshi(code)
-        path = os.path.join(dirpath, filename)
-        data = {
-            'date': datetime.date.today(),
-            'code': code,
-            'stdprice': stdprice,
-            'fenshi': fenshi,
-            'stdfenshi': stdfenshi
-        }
-        self._write_yaml(path, data)
-        text = f"""
-        code: {data["code"]}
-        date: {data["date"]}
-        slen: {len(data["stdfenshi"])}
-        stdp: {data["stdprice"]}
-        ssos: {data["fenshi"][0]}
-        seos: {data["fenshi"][-1]}
-        """
-        print(text)
-        print("Done.")
-        return data["fenshi"]
+    if gt is not None and gtlen is not None:
+        plt.plot(gt[gtlen], color="purple", label="gt")
+        xmax = gtlen - 1
+    for i in range(len(res)):
+        plt.plot((front + res[i])[:xmax], label="pred")
+    plt.plot(front, color="black")
+    plt.vlines(len(front) - 1, 50, front[-1], linestyles="dashed", colors="blue")
+    plt.hlines(50, 0, xmax, linestyles="dashed", colors="red")
+    plt.xlim([0, xmax])
+    plt.ylim([-1, 101])
+    plt.xlabel("time step")
+    plt.ylabel("price range %")
+    plt.title(f"{len(front)}")
+    # plt.legend()
+    if savefig is not None:
+        plt.savefig(f"{savefig}.jpg", format="jpg")
+    plt.show()
+    return fig
 
-    def clean_wencai_codelist(self):
-        with open("data/codelist.txt", "r", encoding="utf-8") as f:
-            lines = f.readlines()
-            codelist = []
-            for line in lines:
-                if external.re_search(r"[0-9]{6}", line[:-1]):
-                    codelist.append(external.re_search(r"[0-9]{6}", line[:-1])[0])
-        print(f"{len(codelist)} items found ... ")
-        return codelist
+DEVICE = torch.device("cuda:0")
+train_ds = StockDataset("data/train")
+test_ds = StockDataset("data/train")
+train_dl = DataLoader(train_ds, batch_size=32, shuffle=True)
+test_dl = DataLoader(test_ds, batch_size=1, shuffle=True)
+
+model = torch.load("checkpoints/model.pt")
+model.eval()
+with torch.no_grad():
+    datareader = DataReader("data")
+    data = datareader.readyaml("valid/2023-01-18-002238.yaml")
+
+    seq = data["stdfenshi"]
+    seq, seqlen = train_ds.tk.tokenize(seq)
+    seq = torch.LongTensor(seq)
+
+    msk = 150#seqlen
+    mskseq = torch.cat((seq[:msk], torch.zeros(250-msk)), dim=0).long().to(DEVICE)
+    mskseqlen = msk
+    res, avgpred, current = inference(mskseq, mskseqlen, model, beam_size=10, device=DEVICE)
+    plot_res(front=mskseq[1:mskseqlen].detach().cpu().numpy().tolist(),
+             res=res,
+             gt=None,
+             gtlen=None)
+
+grabber = Grabber()
+codelst = grabber.clean_wencai_codelist()
+
+scorelst = []
+for ix, code in enumerate(codelst):
+    seq = grabber.sample(dirpath="x", code=code)
+    model.eval()
+    with torch.no_grad():
+        seq, seqlen = train_ds.tk.tokenize(seq)
+        seq = torch.LongTensor(seq)
+        k = 1
+        avgpredlst, currentlst = [], []
+        for i in range(1, seqlen // k):
+            msk = k*i#seqlen
+            mskseq = torch.cat((seq[:msk], torch.zeros(250-msk)), dim=0).long().to(DEVICE)
+            mskseqlen = msk
+            res, avgpred, current = inference(mskseq, mskseqlen, model, beam_size=20, device=DEVICE)
+            avgpredlst.append(avgpred)
+            currentlst.append(current)
+        performance = np.asarray(currentlst[20:]) - np.asarray(avgpredlst[10:-10])
+        score = sum(performance) / len(performance)
+        scorelst.append((code, score))
+        print(ix, code, len(seq), score)
