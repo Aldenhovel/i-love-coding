@@ -1,6 +1,7 @@
 import os
 import yaml
 
+# Module for reading yaml data file
 class DataReader:
     def __init__(self, datadir="data"):
         self.datadir = datadir
