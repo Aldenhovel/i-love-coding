@@ -112,7 +112,7 @@ with torch.no_grad():
 
     seq = data["stdfenshi"]
     seq, seqlen = train_ds.tk.tokenize(seq)
-    seq = torch.LongTensor(seq)
+    seq = torch.Tensor(seq).long()
 
     msk = 150#seqlen
     mskseq = torch.cat((seq[:msk], torch.zeros(250-msk)), dim=0).long().to(DEVICE)
@@ -124,7 +124,8 @@ with torch.no_grad():
              gtlen=None)
 
 grabber = Grabber()
-codelst = grabber.clean_wencai_codelist()
+codelst = grabber.clean_wencai_codelist()[:10]
+print(f"{len(codelst)} items in queue.")
 
 scorelst = []
 for ix, code in enumerate(codelst):
@@ -132,7 +133,7 @@ for ix, code in enumerate(codelst):
     model.eval()
     with torch.no_grad():
         seq, seqlen = train_ds.tk.tokenize(seq)
-        seq = torch.LongTensor(seq)
+        seq = torch.Tensor(seq).long()
         k = 1
         avgpredlst, currentlst = [], []
         for i in range(1, seqlen // k):
@@ -146,3 +147,16 @@ for ix, code in enumerate(codelst):
         score = sum(performance) / len(performance)
         scorelst.append((code, score))
         print(ix, code, len(seq), score)
+
+scorelst = sorted(scorelst, key=lambda x: x[1], reverse=True)
+import datetime
+resfile = f"x/00-{datetime.date.today()}.txt"
+with open(resfile, "a+") as f:
+    for code, score in scorelst:
+        if score > 2:
+            f.write(f"{code}\n")
+
+print("-"*30)
+print(f"process done. See in x/00-{datetime.date.today()}.txt")
+for code, score in scorelst:
+    print(code, score)
