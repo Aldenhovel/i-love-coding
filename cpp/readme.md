@@ -27,3 +27,22 @@
 |    `Volatile`     | 关键字 `volatile` 的特性：易变、原子性、不可优化。           |                         |
 |     `Worker`      | 通过 `Worker-->virtual Singer` , `Worker-->virtual Waiter` , `Singer, Waiter-->SingingWaiter` 来展示虚基类和多重继承的语法、以及需要注意的事项。 | :ballot_box_with_check: |
 
+
+## std
+
+与 `STL` 和 `std::` 下有关的零碎部分，在目录 `std/` 下。
+
+| 目录 `std/...` |          概述          |      |
+| :------------: | :--------------------: | ---- |
+|    `chrono`    | C++ 高精度时间相关的库 |      |
+
+## TensorRT C++
+
+使用 C/C++ API 开发与部署 Nvidia TensorRT 神经网络模型，在目录 `TensorRT/` 下 。
+
+| 目录 `TensorRT/...` |                             概述                             |      |
+| :-----------------: | :----------------------------------------------------------: | ---- |
+| `00-sampleMNISTAPI` | 简单地介绍了使用 TensorRT API 搭建网络的方法，和加载 Caffe 模型的方法并对 MNIST 图像推理。 |      |
+|     `01-ABSNet`     |     仿照 `sampleMNISTAPI.cpp` 将搭建一个 ABS 算子网络。      |      |
+|   `02-ConcatNet`    | 仿照 `sampleMNISTAPI.cpp` 将搭建一个 Concatenation 算子网络。 |      |
+
