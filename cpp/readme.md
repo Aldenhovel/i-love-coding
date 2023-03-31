@@ -46,3 +46,9 @@
 |     `01-ABSNet`     |     仿照 `sampleMNISTAPI.cpp` 将搭建一个 ABS 算子网络。      |      |
 |   `02-ConcatNet`    | 仿照 `sampleMNISTAPI.cpp` 将搭建一个 Concatenation 算子网络。 |      |
 
+## Q&A
+
+收集关于面经和相关问题。
+
+[link](https://github.com/Aldenhovel/i-love-coding/blob/main/cpp/quations.md)
+
