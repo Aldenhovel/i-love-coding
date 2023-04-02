@@ -174,3 +174,36 @@
 
 ### 11 `volatile` 关键字有什么用？
 
+1. 用来告诉编译器一个变量不应该进行一些优化，以保证程序的正确性。`volatile` 可以修饰变量、指针、成员函数等。
+
+2. **防止编译器优化**
+
+   如果一个变量被标记为 `volatile`，编译器就不会对它进行优化，以避免在程序执行时发生错误。例如，当一个变量被用作信号量，它可能会在中断处理程序中被修改，因此需要标记为 `volatile`。
+
+3. **指示编译器不要缓存该变量的值**
+
+   如果一个变量被标记为 `volatile`，编译器就不会把该变量的值缓存到 CPU 寄存器或者其他优化的位置，而是直接从内存中读取或写入该变量的值。这样可以确保读取到最新的值，避免出现错误。
+
+4. 示例：
+
+   ```cpp
+   #include <iostream>
+   
+   volatile int g_count = 0; // 编译器不会优化 g_count
+   
+   void increment_count() {
+       ++g_count;
+   }
+   
+   int main() {
+       for (int i = 0; i < 10; ++i) {
+           increment_count();
+           std::cout << "g_count = " << g_count << std::endl;
+       }
+       return 0;
+   }
+   
+   ```
+
+   
+
