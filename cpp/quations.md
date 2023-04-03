@@ -585,5 +585,153 @@
    }
    ```
 
+
+
+### 12  什么是 `weak_ptr` ？
+
+1. 是 `shared_ptr` 的一种补充，旨在解决 `shared_ptr` 的循环引用问题。`weak_ptr` 指向一个由 `shared_ptr` 管理的对象，但不会增加其引用计数，因此它并不能保证对象一直存在。`weak_ptr` 主要用于检查它指向的对象是否已被销毁，避免使用已失效的指针。
+2. `weak_ptr` 通常用于解决 `shared_ptr` 可能出现的循环引用问题，即两个或多个对象相互持有 `shared_ptr`，导致引用计数永远不为零，内存无法释放。通过使用 `weak_ptr`，可以在 `shared_ptr` 之间创建一种弱关系，避免循环引用问题。
+
+
+
+### 13 `enum class ` 和 `enum` 有什么区别？
+
+1. `enum`的枚举值会被隐式转换为整数类型，而`enum class`的枚举值不会。
+
+2. `enum`的作用域是其定义所在的作用域，而`enum class`的作用域是其类的作用域。
+
+3. 示例：
+
+   ```cpp
+   enum Color {
+       RED,
+       GREEN,
+       BLUE
+   };
+   // Color 中的枚举值可以隐式等价于 int
+   
+   enum class Animal {
+       DOG,
+       CAT,
+       BIRD
+   };
+   // 不与 int 等价
+   ```
+
+
+
+## STL
+
+### 1 C++ 使用数组和 `std::array` 分别有什么优缺点？
+
+1. **长度大小**
+
+   数组的大小必须是编译时常量，而 `std::array` 的大小可以是**编译时常量**或**运行时变量**。
+
+2. **安全性**
+
+   使用 `std::array` 可以更好地避免越界访问错误，因为它具有内置的范围检查，而数组没有。
+
+### 2 `std::vector` 最大特点是什么，与 `std::array` 相比有什么不同？
+
+1. **大小不同**
+
+   `std::vector`是动态数组，可以在运行时动态调整其大小，而`std::array`是静态数组，一旦创建大小就无法改变。
+
+2. **存储方式不同**
+
+   `std::vector`使用堆内存存储元素，而`std::array`使用栈内存存储元素。
+
+3. **迭代器稳定性不同**
+
+   对于`std::vector`，当容器的大小发生变化时，迭代器的指向可能会失效，而对于`std::array`，迭代器的指向不会失效。
+
+### 3 `std::vector` 的 `resize` `reserve` `clear` 如何实现？
+
+1. `vector.resize()` 将这个向量的长度变为指定长度，如果原向量长了就将多出来的元素删掉，如果原向量短了就使用 `0` 或者指定值补充。
+
+   ```cpp
+   std::vector<int> myvector;
+   
+   for (int i=1;i<10;i++) myvector.push_back(i); // [1,2,3,4,5,6,7,8,9]
+   
+   myvector.resize(5); // [1,2,3,4,5]
+   myvector.resize(8,100); // [1,2,3,4,5,100,100,100]
+   myvector.resize(12); // [1,2,3,4,5,100,100,100,0,0,0,0]
+   ```
+
+2. `vector.reserve()` 可以请求此向量至少足以包含 n 个元素。尽管 `std::vector` 在插入元素时具有动态长度的能力，但在某些情况下，预先分配一定的内存空间可能会提高 `std::vector` 的性能。
+
+   ```cpp
+   // vector::reserve
+   #include <iostream>
+   #include <vector>
+   
+   int main ()
+   {
+     std::vector<int>::size_type sz;
+   
+     // 不使用 reserve 指定容量， vector 每次扩充为原来的2倍
+     std::vector<int> foo;
+     sz = foo.capacity();
+     std::cout << "making foo grow:\n";
+     for (int i=0; i<100; ++i) {
+       foo.push_back(i);
+       if (sz!=foo.capacity()) {
+         sz = foo.capacity();
+         std::cout << "capacity changed: " << sz << '\n';
+       }
+     }
+   
+     std::vector<int> bar;
+     sz = bar.capacity();
+     bar.reserve(100);   // 直接使用
+     std::cout << "making bar grow:\n";
+     for (int i=0; i<100; ++i) {
+       bar.push_back(i);
+       if (sz!=bar.capacity()) {
+         sz = bar.capacity();
+         std::cout << "capacity changed: " << sz << '\n';
+       }
+     }
+     return 0;
+   }
+   ```
+
+   ```
+   making foo grow:
+   capacity changed: 1
+   capacity changed: 2
+   capacity changed: 4
+   capacity changed: 8
+   capacity changed: 16
+   capacity changed: 32
+   capacity changed: 64
+   capacity changed: 128
+   making bar grow:
+   capacity changed: 100
+   ```
+
    
 
+### 			
+
+### Other
+
+### 1 C++ 中栈和堆有什么区别？
+
+1. **空间是否动态分配**
+
+   栈空间的大小是固定的，由编译器在编译时分配，而堆空间的大小可以在运行时动态分配。
+
+2. **是否自动分配回收**
+
+   栈内存的分配和释放是自动的，由编译器自动完成，而堆内存的分配和释放需要程序员显式地调用相应的函数，如 new/delete 或 malloc/free。
+
+3. **生命周期**
+
+   在栈上分配的变量的生命周期与所在函数的生命周期相同，当函数退出时，变量会自动被释放，而在堆上分配的变量的生命周期不受函数的限制，需要程序员自己手动释放。
+
+4. **访问周期**
+
+   栈空间的访问速度比堆空间更快，因为栈空间是连续的，而堆空间可能是分散的。
