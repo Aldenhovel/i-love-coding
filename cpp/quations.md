@@ -207,3 +207,383 @@
 
    
 
+### 12 指针和引用的区别
+
+1. **定义和使用方式不同**
+
+   指针使用 `*` 来声明，引用使用 `&` 来声明。使用指针时需要使用 `new` 来分配内存，使用引用时不需要。
+
+2. **空值问题**
+
+   指针可以指向空值（`nullptr`），引用必须始终引用某个对象。
+
+3. **可以改变指向的对象**
+
+   指针可以在运行时更改指向的对象，而引用不能改变引用的对象。
+
+4. **引用是安全的**
+
+   引用不会像指针一样容易出现未初始化的问题，因为引用必须在定义时初始化。
+
+5. 在选择使用指针还是引用时，通常建议优先使用引用，因为引用更安全、更易读，也更符合C++中的设计理念。但是，在一些情况下，使用指针更方便，例如**需要动态分配内存、运行时需要改变所指对象、需要修改函数参数的值和使用 STL 容器存储对象**等场景。
+
+### 13 `new` 和 `malloc` 区别？
+
+1. `new`是C++中的操作符，而`malloc`是C语言中的函数。
+2. `new`会调用对象的构造函数，而`malloc`不会。这意味着，如果需要分配对象类型的内存，使用`new`更方便，因为它可以自动调用构造函数，而不需要显式地调用它。
+3. `new`返回的是类型指针，而`malloc`返回的是`void*`。这意味着，在使用`malloc`时，需要进行强制类型转换才能正确地使用返回的指针。而使用`new`则不需要进行类型转换。
+4. `new`可以处理数组，而`malloc`不能。如果需要动态分配数组，使用`new[]`更方便，因为它可以自动调用数组元素类型的构造函数。
+5. `new`抛出异常，而`malloc`返回`NULL`。如果动态分配内存失败，`new`会抛出异常，而`malloc`会返回`NULL`。这意味着，在使用`new`时需要使用异常处理机制来处理分配内存失败的情况，而在使用`malloc`时需要手动检查返回值是否为`NULL`。
+6. 总的来说，C++中的`new`更适合分配对象类型的内存，而C语言中的`malloc`更适合分配简单类型（例如`int`、`char`等）的内存。在使用时，应根据具体情况选择适合的方式。
+
+### 14 `new[]` 和 `delete[]` 是否要搭配使用？
+
+1. 使用`new[]`分配数组时，必须使用`delete[]`释放分配的内存，否则可能导致内存泄漏或者其他的问题。与普通的`new`和`delete`操作符不同，`new[]`和`delete[]`操作符的实现需要保证分配和释放的内存区域是连续的。因此，使用`new[]`操作符分配数组时，需要保证使用`delete[]`操作符释放相同大小的内存区域。
+
+2. 示例：
+
+   ```cpp
+   int* arr = new int[10]; // 使用new[]操作符分配一个长度为10的int数组
+   // 使用数组
+   delete[] arr; // 使用delete[]操作符释放分配的内存
+   ```
+
+3. 需要注意的是，使用`delete[]`释放数组内存时，不能只释放数组的一部分，否则会导致内存泄漏和其他问题。同时，对已经释放的数组指针进行再次释放也是错误的，会导致程序崩溃等问题。因此，在使用`new[]`和`delete[]`操作符时，需要小心操作，确保正确使用和释放分配的内存。
+
+
+
+## C++11
+
+### 1 什么是 `auto` 和 `decltype` ?
+
+1. `auto`关键字可以自动推导变量的类型，可以在声明变量时根据初始化表达式自动推断出变量的类型，从而避免了手动指定变量类型的繁琐过程。例如：
+
+   ```cpp
+   auto i = 10; // i被自动推断为int类型
+   auto d = 3.14; // d被自动推断为double类型
+   auto str = "hello"; // str被自动推断为const char*类型
+   ```
+
+2. `decltype`关键字可以获取表达式的类型，可以在编译期间获取表达式的类型，从而可以在类型推导和模板元编程中发挥重要作用。例如：
+
+   ```cpp
+   int i = 10;
+   decltype(i) j = 20; // j被推断为int类型
+   
+   const int& foo();
+   decltype(foo()) x = 0; // x被推断为const int&类型
+   
+   ```
+
+### 2 什么是左值(Lvalues)和右值(Rvalues)？
+
+1. 左值指的是表达式所表示的内存位置，通常可以作为赋值语句的左侧操作数，也可以取址、引用和修改。左值可以是变量、数组元素、类成员、返回左值引用类型的函数等。例如：
+
+   ```cpp
+   int i = 10; // i是左值
+   int arr[5]; // arr是左值
+   std::string str = "hello"; // str是左值
+   ```
+
+2. 右值指的是表达式所表示的数值或对象，通常不能作为赋值语句的左侧操作数，也不能取址、引用和修改。右值可以是字面量、临时对象、返回右值引用类型的函数等。例如：
+
+   ```cpp
+   int a = 10; // 10是右值
+   int b = a + 20; // a + 20是右值
+   int&& f() { return 42; } // f()返回右值引用类型
+   ```
+
+3. C++11引入了右值引用（Rvalue references）的概念，允许程序员直接访问右值，并将其传递到函数中进行移动语义的操作，从而避免不必要的拷贝和分配开销，提高代码的性能和效率。
+
+### 3 什么是左值引用和右值引用？
+
+1. 左值引用是对左值进行引用的一种类型，用于指向已经存在的左值，它通过使用&符号进行声明。例如：
+
+   ```cpp
+   int i = 42;
+   int& r = i; //r是i的引用，即r和i指向同一个内存地址，它们是等价的。
+   ```
+
+2. 右值引用是对右值进行引用的一种类型，用于指向临时对象、将要销毁的对象等右值，它通过使用&&符号进行声明。例如：
+
+   ```cpp
+   int&& a = 42;
+   int&& b = std::move(a); //使用std::move进行右值引用
+   /*
+   在上面的例子中，a是右值引用，指向临时对象42，b通过std::move将a的值进行了转移，现在b指向了42，a成为了无效的引用。
+   */
+   ```
+
+3. 左值引用和右值引用的主要区别在于它们可以绑定的对象的类型。左值引用只能绑定到左值上，而右值引用只能绑定到右值上。此外，右值引用还可以通过std::move等函数将一个左值强制转换为右值引用，从而实现资源的移动语义。
+
+4. 右值引用可以用于移动语义 (Move Semantic) 和完美转发 (Perfect Forwarding) 。
+
+### 4 什么是移动语义？
+
+1. 移动语义（Move Semantics）是C++11引入的一个重要概念，它通过**右值引用**（Rvalue Reference）实现了**对象的高效移动和转移语义，避免了无谓的复制和分配**。
+2. 在C++中，对象的拷贝构造函数和赋值运算符（Copy Constructor和Copy Assignment Operator）常常会进行对象的深拷贝（Deep Copy），即将原有的对象内容复制到一个新的内存空间中。这样的操作在对象较大时会带来显著的性能损失，因此需要寻找更高效的实现方式。
+3. 移动语义通过定义移动构造函数（Move Constructor）和移动赋值运算符（Move Assignment Operator），将对象的资源所有权从一个对象转移到另一个对象，避免了对象的复制和分配，从而提高了程序的性能和效率。
+4. 示例：上面 *3.2* 的例子就是使用了移动语义将 `a` 的资源移动到了 `b` 上面。
+
+### 5 什么是完美转发？
+
+1. 先来看一个不完美转发的例子
+
+   ```cpp
+   #include <iostream>
+   #include <string>
+   
+   void print(const std::string& str) {
+       std::cout << str << std::endl;
+   }
+   
+   void wrapper(const std::string& str) {
+       print(str);
+   }
+   
+   int main() {
+       std::string my_string = "Hello World";
+       wrapper(my_string);
+       return 0;
+   }
+   ```
+
+   这里通过 `my_string --> wapper() --> print()` 的方式输出了一个字符串，这里是没问题的，但是如果将 `print(const string&)` 定义为 `print(const string)` 这样在对传入的 `const string& my_string` 就会发生强制转换导致 `my_string` 数据类型发生变化，导致丢失信息。
+
+2. 完美转发是指将函数的**参数以原样（包括左值或右值属性）转发到另一个函数中，且不会丢失原参数的信息**。这个特性在C++11中引入，主要通过使用模板来实现。
+
+3. 在函数模板中，完美转发通常通过使用`std::forward`来实现。`std::forward`是一个模板函数，接收一个模板参数和一个参数，并根据参数的左值或右值属性来将参数转发到另一个函数中。当参数是左值时，`std::forward`返回左值引用，当参数是右值时，返回右值引用。
+
+4. 示例：
+
+   ```cpp
+   #include <iostream>
+   #include <utility>
+   
+   void foo(int& x)
+   {
+       std::cout << "foo(int&): " << x << std::endl;
+   }
+   
+   void foo(int&& x)
+   {
+       std::cout << "foo(int&&): " << x << std::endl;
+   }
+   
+   template<typename T>
+   void bar(T&& x)
+   {
+       foo(std::forward<T>(x));
+   }
+   
+   int main()
+   {
+       int a = 42;
+       bar(a); //调用 foo(int&)
+       bar(13); //调用 foo(int&&)
+       return 0;
+   }
+   
+   ```
+
+### 6 怎样列表初始化？
+
+1. C++11引入了列表初始化（List Initialization）语法，用于初始化数组、STL容器、类对象等。
+
+2. 示例：
+
+   ```cpp
+   int arr[] = {1, 2, 3};
+   std::vector<int> vec = {1, 2, 3};
+   std::unordered_map<std::string, int> umap = {{"apple", 1}, {"orange", 2}};
+   ```
+
+### 7 `std::function` 是什么？
+
+1. `std::function` 是一个通用的函数封装，类似于函数指针，可以用于存储任意可调用对象，如函数、函数指针、成员函数指针、函数对象等。例如：
+
+   ```cpp
+   #include <iostream>
+   #include <functional>
+   
+   void foo(int x, int y) {
+       std::cout << "x + y = " << x + y << std::endl;
+   }
+   
+   int main() {
+       std::function<void(int, int)> f = foo;
+       f(1, 2);
+       return 0;
+   }
+   ```
+
+### 8 `std::bind` 是什么？
+
+1. `std::bind` 用于将函数对象和其参数绑定起来，生成一个新的函数对象，也就是一个函数适配器。这个新的函数对象可以方便地在需要的时候调用，不必再重复输入参数。例如：
+
+   ```cpp
+   #include <iostream>
+   #include <functional>
+   
+   void foo(int x, int y) {
+       std::cout << "x + y = " << x + y << std::endl;
+   }
+   
+   int main() {
+       auto f1 = std::bind(foo, 1, 2);
+       f1();
+       auto f2 = std::bind(foo, std::placeholders::_1, 2);
+       f2(1);
+       return 0;
+   }
+   /*
+   这里，f1是一个函数对象，等价于调用foo(1, 2)，f2是另一个函数对象，等价于调用foo(1, 2)。
+   */
+   ```
+
+### 9 C++11 怎么使用 Lambda 表达式？
+
+1. Lambda表达式是C++11新增的一种语法，用于定义匿名函数。它的基本形式如下：
+
+   ```
+   [capture list](parameter list) -> return type { function body }
+   ```
+
+   `capture list` 用于捕获外部变量，可以为空；`parameter list` 用于定义参数列表，可以为空；`return type` 用于定义返回值类型，可以为空；`function body` 是函数体。
+
+2. 示例：
+
+   ```cpp
+   #include <iostream>
+   #include <vector>
+   #include <algorithm>
+   
+   int main() {
+       std::vector<int> vec = {1, 2, 3, 4, 5};
+       int n = 3;
+       auto it = std::find_if(vec.begin(), vec.end(), [n](int x) { return x > n; });
+       std::cout << *it << std::endl;
+       return 0;
+   }
+   ```
+
+
+
+### 10 什么是智能指针 `unique_ptr` ？
+
+1. `unique_ptr` 是一种**独占式**的智能指针，它保证同一时间内只有一个指针可以指向所管理的对象。
+
+   `unique_ptr` 是类型安全的，因为它不能拷贝，只能移动所有权。当 `unique_ptr` 被销毁时，它所管理的对象也会被**自动释放**。
+
+   使用 `unique_ptr` 可以有效避免动态分配内存的泄漏问题。
+
+2. 示例：
+
+   ```cpp
+   #include <iostream>
+   #include <memory>
+   
+   int main() {
+       std::unique_ptr<int> uptr(new int(42));
+       std::cout << *uptr << std::endl;
+       return 0;
+   }
+   ```
+
+3. 自己实现：
+
+   ```cpp
+   template <typename T>
+   class my_unique_ptr {
+   public:
+       // 构造函数
+       my_unique_ptr(T* ptr = nullptr) : ptr_(ptr) {}
+   
+       // 禁止拷贝构造和拷贝赋值
+       // = delete 指这个函数不能被调用，是 C++11 新特性，一般用来处理拷贝构造赋值之类的函数以表明禁止使用
+       my_unique_ptr(const my_unique_ptr<T>&) = delete;
+       my_unique_ptr<T>& operator=(const my_unique_ptr<T>&) = delete;
+   
+       // 移动构造函数
+       my_unique_ptr(my_unique_ptr<T>&& other) : ptr_(other.release()) {}
+   
+       // 移动赋值运算符
+       my_unique_ptr<T>& operator=(my_unique_ptr<T>&& other) {
+           reset(other.release());
+           return *this;
+       }
+   
+       // 析构函数
+       ~my_unique_ptr() { delete ptr_; }
+   
+       // 获取指针
+       T* get() const { return ptr_; }
+   
+       // 获取指针引用
+       T& operator*() const { return *ptr_; }
+   
+       // 获取指针成员访问
+       T* operator->() const { return ptr_; }
+   
+       // 释放指针所有权
+       T* release() {
+           T* res = ptr_;
+           ptr_ = nullptr;
+           return res;
+       }
+   
+       // 重置指针
+       void reset(T* ptr = nullptr) {
+           if (ptr_ != ptr) {
+               delete ptr_;
+               ptr_ = ptr;
+           }
+       }
+   
+   private:
+       T* ptr_;
+   };
+   
+   ```
+
+   
+
+### 11 什么是 `shared_ptr` ?
+
+1. **是什么**
+
+   在 C++ 中，`shared_ptr` 是一个智能指针（smart pointer），用于管理动态分配的对象。与 `unique_ptr` 不同，`shared_ptr` 允许多个智能指针共享同一个对象，当没有任何智能指针引用该对象时，该对象会自动被销毁。`shared_ptr` 基于引用计数实现，每个 `shared_ptr` 都会维护一个引用计数，记录有多少个 `shared_ptr` 共享该对象，当引用计数为零时，`shared_ptr` 会自动删除对象。
+
+2. **怎么使用**
+
+   在创建 `shared_ptr` 时，需要通过 `new` 关键字动态分配对象，然后将对象的指针传递给 `shared_ptr` 构造函数。当不再需要对象时，`shared_ptr` 会自动删除该对象。
+
+3. **好处**
+
+   使用 `shared_ptr` 可以避免内存泄漏和悬垂指针等问题，因为 `shared_ptr` 会自动管理对象的生命周期。
+
+4. 示例：
+
+   ```cpp
+   #include <iostream>
+   #include <memory>
+   
+   class MyClass {
+   public:
+       MyClass() { std::cout << "MyClass created!" << std::endl; }
+       ~MyClass() { std::cout << "MyClass destroyed!" << std::endl; }
+   };
+   
+   int main() {
+       std::shared_ptr<MyClass> p1(new MyClass);
+       {
+           std::shared_ptr<MyClass> p2 = p1;  // 共享所有权
+           std::cout << "p2 is pointing to the same object as p1" << std::endl;
+       }  // p2 超出作用域，但不会销毁对象，因为 p1 仍然拥有所有权
+       std::cout << "p1 is still alive!" << std::endl;
+       return 0;
+   }
+   ```
+
+   
+
