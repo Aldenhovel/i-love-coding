@@ -250,7 +250,21 @@
 
 3. 需要注意的是，使用`delete[]`释放数组内存时，不能只释放数组的一部分，否则会导致内存泄漏和其他问题。同时，对已经释放的数组指针进行再次释放也是错误的，会导致程序崩溃等问题。因此，在使用`new[]`和`delete[]`操作符时，需要小心操作，确保正确使用和释放分配的内存。
 
+### 15 `noexcept` 有什么用？
 
+1. 当在函数声明或定义后加上 `noexcept` 关键字时，表示该函数不会抛出任何异常。
+
+   ```cpp
+   void foo() noexcept {}
+   ```
+
+2. 好处
+
+   - **优化代码**：由于在程序运行时，如果一个函数被声明为 `noexcept`，编译器就会认为该函数不会抛出异常，进而进行一些优化，例如省略异常处理代码，简化程序结构，提高代码执行效率。
+   - **提高可靠性**：对于那些对异常处理有严格要求的系统，使用 `noexcept` 关键字可以提高程序的可靠性，因为它保证了程序在该函数中不会发生异常。
+   - **让使用者了解函数**：当一个函数被指定为 `noexcept` 时，使用该函数的人会清楚地知道该函数是否会抛出异常，进而更好地编写代码。
+
+3. 需要注意的是，如果一个函数被指定为 `noexcept`，但实际上该函数抛出了异常，程序会调用 `std::terminate()`，从而**导致程序异常终止**。因此，需要确保在使用 `noexcept` 关键字时，函数的实现不会抛出异常。
 
 ## C++11
 
@@ -618,6 +632,24 @@
    // 不与 int 等价
    ```
 
+### 14 `unique_ptr` 怎样转换所有权？
+
+1. 使用 `std::move()` 将原指针转移给新指针（即移动语义），原指针会自动调用 `unique_ptr::release()` 释放。
+
+   ```cpp
+   #include <iostream>
+   #include <memory>
+   
+   int main() {
+       int* p = new int(10);
+       std::unique_ptr<int> ptr1(p); // ptr1 现在拥有 p 的所有权
+       std::unique_ptr<int> ptr2 = std::move(ptr1); // ptr2 获得了 p 的所有权，ptr1 失去了所有权
+       std::cout << *ptr2 << std::endl; // 输出 10
+       // 此时 ptr1 不再指向 p，调用 ptr1.release() 会返回 nullptr
+       return 0;
+   }
+   ```
+
 
 
 ## STL
@@ -712,11 +744,100 @@
    capacity changed: 100
    ```
 
+3.  `clear()` 函数用于清空 vector 中的元素，让其 size 为 0。实现 `clear()` 可以将底层数据的元素全部析构，然后将 size 置为 0。
+
+   ```cpp
+   template <typename T>
+   void vector<T>::clear() noexcept {
+       for (size_t i = 0; i < m_size; ++i) {
+           m_allocator.destroy(&m_data[i]); // 析构元素
+       }
+       m_size = 0;
+   }
+   ```
+
+### 4 `std::deque` 底层数据结构是什么，内部如何实现？
+
+1. `deque`（双端队列）是一个支持在队列两端进行高效插入和删除操作的容器，可以认为是一种动态数组和双向链表的混合体。
+2. `deque` 内部的实现方式一般是采用**分块结构**，将其内部分成多个连续的内存块（chunk），**每个内存块内部是一个固定大小的数组**，双端队列内部通过指向首尾块的指针（如`begin_`和`end_`）和块内元素的索引（如`front_index`和`back_index`）来维护队列的元素。
+3. 在进行插入和删除操作时，`deque` 内部会根据当前元素的位置和相对位置选择在头部或尾部的块进行操作，从而使其具有高效的插入和删除操作。同时，`deque` 还支持随机访问操作，可以通过指向块的指针和块内元素的索引快速定位到指定位置的元素。
+
+### 5 `std::map` 和 `std::unordered_map` 区别是什么，分别在什么场景下使用？
+
+1. `map` 底层使用 **红黑树（Red-Black Tree）** 实现，保证了元素按照键的大小有序存储，时间复杂度为  $O(log n)$ ，适用于需要快速查找、排序、遍历键值对的场景。由于红黑树的特性，`map` 内部存储的键值对是有序的，因此需要占用额外的空间来维护这种有序性。
+2. `unordered_map` 底层使用 **哈希表（Hash Table）** 实现，元素的排列顺序不固定，时间复杂度为 $O(1)$ ，适用于需要快速查找、插入、删除的场景。由于哈希表的特性，`unordered_map` 内部存储的键值对是无序的，因此不需要额外的空间来维护有序性，但是在遍历键值对时需要注意顺序不固定的情况。
+3. 需要根据实际需求来选择使用哪种容器。如果需要对元素进行**有序存储或查找，或者需要对键进行排序**，可以选择 `map`；如果需要**快速的插入、查找和删除**，可以选择 `unordered_map`。同时，在对存储空间的要求上，`unordered_map` 可能会占用更多的空间，因为需要存储哈希表的额外信息，而 `map` 不需要。
+
+### 6 `std::list` 在什么场景下使用，与 `std::vector` 的区别？
+
+1. 它使用双向链表实现。与 `vector` 或 `deque` 不同，它没有随机访问迭代器，**因此不能进行下标操作**，而是只能通过迭代器进行顺序访问。
+
+2. `list` 的主要使用场景：
+
+   - 需要频繁的插入或删除操作，因为在链表中这些操作的时间复杂度为 O(1)。
+
+   - 不需要随机访问元素，因为在链表中访问元素的时间复杂度为 O(n)。
+
+   - 不需要连续内存，因为链表的结点可以存储在不同的内存位置上。
+
+3. 在需要随机访问元素或连续内存时，建议使用 `vector` 或 `deque`。
+
+### 7 `std::string` 的常用方法有哪些？
+
+1. `std::string::size()` / `std::string::length()` ：获取字符串的长度。
+
+   ```cpp
+   std::string str = "hello world";
+   std::cout << str.size() << std::endl; // 输出 11
+   ```
+
+2. `std::string::substr()`：返回一个从指定位置开始的子字符串。
+
+   ```cpp
+   std::string str = "hello world";
+   std::string substr = str.substr(6, 5); // 从第 6 个字符开始，取 5 个字符
+   std::cout << substr << std::endl; // 输出 world
+   ```
+
+3. `std::string::find()`：查找指定字符串在当前字符串中的位置。
+
+   ```cpp
+   std::string str = "hello world";
+   std::size_t pos = str.find("world"); // 查找 world 在字符串中的位置
+   if (pos != std::string::npos) {
+       std::cout << "found at position " << pos << std::endl;
+   } else {
+       std::cout << "not found" << std::endl;
+   }
+   ```
+
+4. `std::string::replace()`：将指定位置的子字符串替换为另一个字符串。
+
+   ```cpp
+   std::string str = "hello world";
+   str.replace(6, 5, "everyone"); // 将 world 替换为 everyone
+   std::cout << str << std::endl; // 输出 hello everyone
+   ```
+
+5. `std::string::insert()`：在指定位置插入一个字符串或字符。
+
+   ```cpp
+   std::string str = "hello";
+   str.insert(5, " world"); // 在 hello 之后插入 world
+   std::cout << str << std::endl; // 输出 hello world
+   ```
+
+6. `std::string::c_str()`：将 string 对象转换为 C 风格的字符串。
+
+   ```cpp
+   std::string str = "hello";
+   const char* cstr = str.c_str(); // 转换为 C 风格的字符串
+   std::cout << cstr << std::endl; // 输出 hello
+   ```
+
    
 
-### 			
-
-### Other
+## Other
 
 ### 1 C++ 中栈和堆有什么区别？
 
