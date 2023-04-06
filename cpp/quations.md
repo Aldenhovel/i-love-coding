@@ -1074,7 +1074,324 @@
    }
    ```
 
-### 5 全局变量和局部变量的区别
+### 5 全局变量和局部变量的区别？
 
+1. **作用域**
 
+   全局变量的作用域是整个程序，从定义的位置开始一直到程序结束，可以在程序中的任何地方被访问。而局部变量的作用域仅限于定义它的函数内部，只能在函数内部被访问。
+
+2. **生命周期**
+
+   全局变量的生命周期是整个程序，从定义的位置开始一直到程序结束。而局部变量的生命周期仅限于定义它的函数内部，在函数执行完毕后就会被销毁。
+
+3. **初始化**
+
+   全局变量在定义时会被自动初始化为 0 或空值，如果在定义时赋了初值，则会按照赋值进行初始化。而局部变量在定义时不会被自动初始化，需要显式地赋初值后才能使用。
+
+4. **存储位置**
+
+   全局变量存储在静态存储区域中，而局部变量存储在栈内存中。
+
+5. 示例：
+
+   ```c
+   #include <stdio.h>
+   
+   int globalVar = 10; // 定义全局变量
+   
+   void test()
+   {
+       int localVar = 20; // 定义局部变量
+       printf("globalVar = %d, localVar = %d\n", globalVar, localVar);
+   }
+   
+   int main()
+   {
+       test(); // 输出 globalVar = 10, localVar = 20
+       printf("globalVar = %d\n", globalVar); // 输出 globalVar = 10
+       //printf("localVar = %d\n", localVar); // 编译错误，局部变量无法在函数外部访问
+       return 0;
+   }
+   ```
+
+   
+
+### 6 宏定义的优缺点？
+
+1. 宏定义使用 `#define identify value` 定义。
+2. **优点**
+   - 可定义常量，方便代码复用。
+   - 可定义代码片段，减少代码重复。
+   - 可实现条件编译，根据宏的设定编译不同代码。
+3. **缺点**
+   - 没有类型检查，容易出错。
+   - 代码可读性下降。
+   - 不能被调试器识别。
+4. 因为宏定义存在以上的缺点，所以在编写 C 代码时，不建议使用宏定义，特别是用于函数或代码片段的宏定义。**可以使用 `const` 常量、枚举类型、函数、结构体**等 C 语言的其他特性来替代宏定义。
+
+### 7 内存对齐是什么？
+
+1. C 语言内存对齐是指在内存中分配变量时，将变量的起始地址调整为其数据类型所占内存大小的整数倍。这样做的目的是为了**提高内存读写的效率**，同时也可以避免一些硬件平台对未对齐内存的访问产生异常。
+
+2. C 语言中的内存对齐规则可以使用 `#pragma pack` 指令来控制，其语法如下：
+
+   ```c
+   #pragma pack(n)
+   ```
+
+   其中，`n` 表示对齐方式，可以是 1、2、4、8 等，表示对齐到 1、2、4、8 等字节边界。如果不指定对齐方式，则默认按照编译器的默认对齐方式进行对齐。
+
+3. 过多地使用内存对齐可能会降低程序的性能，因为它会**增加内存的占用和访问的次数**。因此，应该根据实际情况权衡利弊，避免滥用内存对齐。
+
+### 8 `inline` 内联函数的特点和优缺点是什么？
+
+1. `inline` 关键字可以用于定义内联函数，它的作用是告诉编译器在调用该函数时将其代码直接嵌入到调用处，而不是像普通函数一样通过栈来进行调用。这样做可以减少函数调用的开销，从而提高程序的执行效率。
+
+2. **优点**
+
+   - **减少函数调用的开销**：由于内联函数的代码直接嵌入到调用处，避免了普通函数调用的参数传递、栈帧创建和销毁等操作，从而可以减少函数调用的开销。
+
+   - **提高程序的执行效率**：内联函数的代码可以被编译器进行优化，从而可以产生更加高效的代码。
+
+3. **缺点**
+
+   - **代码膨胀**：由于内联函数的代码直接嵌入到调用处，可能会导致代码量的增加，从而影响可读性和可维护性。
+
+   - **可执行文件体积增大**：内联函数会将函数的代码嵌入到调用处，从而会增加可执行文件的体积。
+
+   - **可能会影响缓存效果**：内联函数的代码通常比较短小，如果被频繁地调用，可能会导致缓存命中率下降，从而影响程序的执行效率。
+
+4. 通常情况下，应该尽量避免使用过多的内联函数，特别是对于一些比较**复杂的函数，不应该使用**内联函数来代替。另外，在使用内联函数时，需要注意避免出现递归调用和函数指针等情况，因为这些情况可能会使内联函数失效。
+
+### 9 怎样使用 C 实现 C++ 的面向对象特性（继承封装多态）？
+
+1. **封装** 可以使用结构体和函数指针实现。
+
+   ```c
+   #include <stdio.h>
+   
+   // 定义一个父类结构体
+   typedef struct {
+       int x;
+       int y;
+   } Point;
+   
+   // 定义一个子类结构体，继承自父类
+   typedef struct {
+       Point point;
+       int z;
+   } Point3D;
+   
+   // 定义一个父类函数，用于打印父类结构体的数据
+   void printPoint(Point *p) { 
+       printf("x=%d, y=%d\n", p->x, p->y); 
+   }
+   
+   // 定义一个子类函数，用于打印子类结构体的数据
+   void printPoint3D(Point3D *p) { 
+       printf("x=%d, y=%d, z=%d\n", p->point.x, p->point.y, p->z); 
+   }
+   
+   int main() {
+       // 定义一个父类对象，并调用父类函数
+       Point p = {1, 2};
+       printPoint(&p);
+   
+       // 定义一个子类对象，并调用子类函数
+       Point3D p3d = {{3, 4}, 5};
+       printPoint3D(&p3d);
+   
+       return 0;
+   }
+   ```
+
+2. **封装** 可以使用结构体和函数指针实现封装。
+
+   ```c
+   #include <stdio.h>
+   
+   // 定义一个结构体，用于封装数据和函数指针
+   typedef struct {
+       // 数据成员，私有属性
+       int x;
+       int y;
+       
+       // 函数指针，公共接口
+       void (*printPoint)(void *);
+   } Point;
+   
+   // 定义一个函数，用于打印 Point 结构体的数据
+   void printPoint(void *p) {
+       Point *point = (Point *)p;
+       printf("x=%d, y=%d\n", point->x, point->y);
+   }
+   
+   int main() {
+       // 创建 Point 对象，并设置 x 和 y 的值
+       Point p = {1, 2};
+   
+       // 设置公共接口函数指针，指向私有函数
+       p.printPoint = printPoint;
+   
+       // 调用公共接口函数，打印 Point 结构体的数据
+       p.printPoint(&p);
+   
+       return 0;
+   }
+   ```
+
+3. **多态** 可以使用函数指针来实现。
+
+   ```c
+   // Animal.h
+   typedef struct Animal Animal;
+   
+   struct Animal {
+       char* name;
+       void (*makeSound)(Animal* animal);
+   };
+   
+   void Animal_init(Animal* animal, char* name);
+   
+   // Cat.h
+   typedef struct Cat Cat;
+   
+   struct Cat {
+       Animal base;
+   };
+   
+   void Cat_init(Cat* cat, char* name);
+   
+   // Dog.h
+   typedef struct Dog Dog;
+   
+   struct Dog {
+       Animal base;
+   };
+   
+   void Dog_init(Dog* dog, char* name);
+   ```
+
+   ```c
+   // Animal.c
+   #include "Animal.h"
+   
+   void Animal_init(Animal* animal, char* name) {
+       animal->name = name;
+   }
+   
+   // Cat.c
+   #include "Cat.h"
+   #include <stdio.h>
+   
+   static void Cat_makeSound(Cat* cat) {
+       printf("%s says meow\n", cat->base.name);
+   }
+   
+   void Cat_init(Cat* cat, char* name) {
+       Animal_init(&cat->base, name);
+       cat->base.makeSound = (void (*)(Animal*))Cat_makeSound;
+   }
+   
+   // Dog.c
+   #include "Dog.h"
+   #include <stdio.h>
+   
+   static void Dog_makeSound(Dog* dog) {
+       printf("%s says woof\n", dog->base.name);
+   }
+   
+   void Dog_init(Dog* dog, char* name) {
+       Animal_init(&dog->base, name);
+       dog->base.makeSound = (void (*)(Animal*))Dog_makeSound;
+   }
+   ```
+
+   ```c
+   int main() {
+       Cat cat;
+       Cat_init(&cat, "Tom");
+       cat.base.makeSound(&cat.base);
+   
+       Dog dog;
+       Dog_init(&dog, "Charlie");
+       dog.base.makeSound(&dog.base);
+   
+       return 0;
+   }
+   ```
+
+### 10 `memcpy` 怎么使用？怎样才能效率更高？
+
+1. `memcpy` 可以将内存 `src` 开始后面 `n` 个字节复制到内存 `dest` 上：
+
+   ```c
+   void* memcpy(void* dest, const void* src, size_t n);
+   ```
+
+   ```c
+   char src[] = "Hello, world!";
+   char dest[20];
+   
+   memcpy(dest, src, strlen(src) + 1); // 复制 src 到 dest
+   printf("%s\n", dest);
+   ```
+
+2. 对于如何使 `memcpy` 的效率更高，一般有以下几个建议：
+
+   - 尽可能使用编译器提供的内置优化，例如 GCC 提供的 `-O2`、`-O3` 等选项。
+
+   - 如果要复制的内存区域非常大，可以考虑使用多线程并行复制，例如使用 OpenMP 等并行编程库。
+
+   - 如果要复制的内存区域大小不是很大，可以考虑手动编写复制函数，使用一些优化技巧，例如使用指针对齐、使用循环展开等。
+
+3. 需要注意的是，在进行内存复制操作时，要确保源内存区域和目标内存区域不重叠，否则可能会出现意想不到的错误。可以使用 `memmove` 函数来处理重叠区域的内存复制。
+
+### 11 `typedef` 和 `define` 区别？
+
+1. `typedef` 是一种定义别名方式：
+
+   ```c
+   typedef int Interger;
+   Interger num = 10;
+   ```
+
+   在编译时，C 编译器会将所有使用 `Integer` 的地方自动替换为 `int`，因此在运行时并没有任何性能损失。使用 `typedef` 定义别名可以让代码更加易读易懂，而且可以避免一些拼写错误。
+
+2. `#define` 是定义宏的方式：
+
+   ```c
+   #define MAX_LEN 100
+   ```
+
+   上面的代码定义了一个名为 `MAX_NUM` 的宏，其值为 `100`。在编译时，C 编译器会将所有使用 `MAX_NUM` 的地方自动替换为 `100`，因此在运行时并没有任何性能损失。
+
+3. 区别
+
+   - `typedef` 定义类型别名，而 `define` 定义的是文本替换，不能定义类型别名。
+
+   - `typedef` 只能用于定义类型别名，而 `define` 可以定义常量、函数宏、条件编译等。
+
+   - `typedef` 定义的别名只在当**前作用域有效**，而 `define` 定义的宏在整个程序中都有效。
+
+     ```c
+     #include <stdio.h>
+     #define MAX_NUM 100
+     
+     void foo(void) {
+         typedef int my_int; // 只在 foo() 内可使用 my_int
+         my_int a = 10;
+         printf("a = %d\n", a);
+     }
+     
+     int main() {
+         foo();
+         printf("MAX_NUM = %d\n", MAX_NUM); // 随时可以使用 MAX_NUM
+         return 0;
+     }
+     ```
+
+   - `typedef` 可以定义结构体、枚举等复杂类型的别名，而 `define` 不能定义这些类型的别名。
+
+   
 
