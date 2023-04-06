@@ -847,7 +847,7 @@
 
 2. **是否自动分配回收**
 
-   栈内存的分配和释放是自动的，由编译器自动完成，而堆内存的分配和释放需要程序员显式地调用相应的函数，如 new/delete 或 malloc/free。
+   栈内存的分配和释放是自动的，由编译器自动完成，而堆内存的分配和释放需要程序员显式地调用相应的函数，如 `new` / `delete` 或  `malloc` / `free` 。
 
 3. **生命周期**
 
@@ -856,3 +856,225 @@
 4. **访问周期**
 
    栈空间的访问速度比堆空间更快，因为栈空间是连续的，而堆空间可能是分散的。
+
+
+
+# C
+
+## basic
+
+### 1 `const` 作用是什么？
+
+1. **防止修改**
+
+   ```c
+   const int a = 10;
+   a = 5; // 错误：尝试修改常量a的值
+   ```
+
+2. **编译时优化**
+
+   ```c
+   const int a = 10;
+   const int b = 20;
+   int c = a + b; // 编译器在编译时将a和b的值相加，并将结果赋值给c
+   ```
+
+3. **防止函数修改参数值**
+
+   ```c
+   void foo(const int *ptr) {
+       // 尝试修改ptr指向的值会导致编译错误
+   }
+   
+   int main() {
+       int a = 10;
+       foo(&a); // 传递a的地址给foo，但foo不能修改a的值
+       return 0;
+   }
+   ```
+
+4. **增加可读性（明确不可修改）**
+
+   ```c
+   const int MAX_LENGTH = 100;
+   char str[MAX_LENGTH]; // 使用有意义的常量名称代替魔法数字100
+   
+   const float PI = 3.14159;
+   float r = 5.0;
+   float area = PI * r * r; // 使用常量名称代替魔法数字3.14159
+   ```
+
+### 2 `char*` `const char*` `char* const` `const char* const` 有什么区别？
+
+1. **`char*`**
+
+   字符类型指针。
+
+2. **`const char*`**
+
+   指针可以修改，但是指向的内存区域不可修改。
+
+3. **`char* const`**
+
+   指针不可修改，但是指向的内存区域可以修改。
+
+4. **`const char* const`**
+
+   指针本身和指向的内存区域都不可修改。
+
+5. 示例：
+
+   ```c
+   // char *
+   char str[] = "hello";
+   char *p = str;
+   *p = 'H'; // 修改指针指向的内存区域的值
+   p++; // 修改指针本身的值
+   
+   // const char *
+   const char *p = "hello";
+   p++; // 修改指针本身的值
+   *p = 'H'; // 错误：不能修改指针指向的内存区域的值
+   
+   // char * const
+   char str[] = "hello";
+   char * const p = str;
+   p++; // 修改指针本身的值
+   *p = 'H'; // 修改指针指向的内存区域的值
+   
+   // const char * const
+   const char * const p = "hello";
+   p++; // 错误：不能修改指针本身的值
+   *p = 'H'; // 错误：不能修改指针指向的内存区域的值
+   ```
+
+   
+
+### 3 常量指针和指针常量有什么区别？
+
+1. 区别为**指针本身和指向的内存区域是否为常量**。
+
+2. **常量指针**
+
+   指向内存是常量，但指针本身可变，一般是 `const T* varname` 的形式：
+
+   ```c
+   int a = 10;
+   const int *p = &a;
+   p++;  // 可以修改指针本身
+   *p = 20; // 错误：不能修改指针指向的内存区域的值
+   ```
+
+3. **指针常量**
+
+   指针本身是常量，指向内存内容可变，一般是 `T* const varname` 的形式：
+
+   ```c
+   int a = 10;
+   int *const p = &a;
+   p++; // 错误：不能修改指针本身
+   *p = 20; // 可以修改指针指向的内存区域的值
+   ```
+
+
+
+### 4 `ststic` 关键字的作用和使用场景是什么？
+
+1. **静态变量**
+
+   `static` 关键字可以用于声明静态变量，即在函数内部定义的变量，但它的生命周期不随函数的调用而改变。静态变量只会在第一次调用该函数时被初始化，以后调用该函数时不会重新初始化。静态变量只能在声明它的函数内部使用，其他函数无法访问。
+
+   ```c
+   #include <stdio.h>
+   
+   void test()
+   {
+       static int count = 0;
+       count++;
+       printf("count = %d\n", count);
+   }
+   
+   int main()
+   {
+       test(); // 输出 count = 1
+       test(); // 输出 count = 2
+       test(); // 输出 count = 3
+       return 0;
+   }
+   ```
+
+2. **静态函数**
+
+   `static` 关键字也可以用于声明静态函数，即该函数只能在当前文件中被访问，其他文件无法访问。
+
+   ```c
+   // file1.c
+   #include <stdio.h>
+   
+   static void printHello()
+   {
+       printf("Hello, world!\n");
+   }
+   
+   void sayHello()
+   {
+       printHello();
+   }
+   ```
+
+   ```c
+   // file2.c
+   #include <stdio.h>
+   
+   void sayHello(); // 声明函数，不需要包含文件 file1.h
+   
+   int main()
+   {
+       sayHello(); // 输出 Hello, world!，sayHello 不是静态函数，可以在 file2.c 访问
+       // printHello() 会报错，因为 printHello 不可在 file2.c 中访问
+       return 0;
+   }
+   ```
+
+3. **静态全局变量**
+
+   在函数外部定义的变量默认为全局变量，可以被程序中所有函数访问。在全局变量前加上 `static` 关键字，就变成了静态全局变量，它的作用域仅限于定义它的文件中，其他文件无法访问。
+
+   ```c
+   // file1.c
+   #include <stdio.h>
+   
+   static int count = 0;
+   
+   void incrementCount()
+   {
+       count++;
+   }
+   
+   void printCount()
+   {
+       printf("count = %d\n", count);
+   }
+   ```
+
+   ```c
+   // file2.c
+   #include <stdio.h>
+   
+   void incrementCount(); // 声明函数，不需要包含文件 file1.h
+   void printCount(); // 声明函数，不需要包含文件 file1.h
+   
+   int main()
+   {
+       incrementCount();
+       incrementCount();
+       printCount(); // 输出 count = 0
+       return 0;
+   }
+   ```
+
+### 5 全局变量和局部变量的区别
+
+
+
