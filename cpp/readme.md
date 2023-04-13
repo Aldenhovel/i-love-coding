@@ -45,6 +45,7 @@
 | `00-sampleMNISTAPI` | 简单地介绍了使用 TensorRT API 搭建网络的方法，和加载 Caffe 模型的方法并对 MNIST 图像推理。 |      |
 |     `01-ABSNet`     |     仿照 `sampleMNISTAPI.cpp` 将搭建一个 ABS 算子网络。      |      |
 |   `02-ConcatNet`    | 仿照 `sampleMNISTAPI.cpp` 将搭建一个 Concatenation 算子网络。 |      |
+|  `03-UnaryLossTest` | 修改 `sampleMNISTAPI.cpp` 为 `losstest.cpp` 可以测试不同 `UnaryOperation` 算子在转换精度后的损失。 |     |
 
 ## Q&A
 
