@@ -1,0 +1,37 @@
+kRECIP,,,,
+User specified data type,,Error message,Loss of precision,More detail
+network input data type,network  output data type,"input: {0.0f, 0.5f, 1.0f, 1.5f, 2.0f}
+期望输出：output:{inf / 2 / 1 / 0.666667 / 0.5}",,
+kFLOAT,kFLOAT,,mse=0.0,output:{inf / 2 / 1 / 0.666667 / 0.5}
+kFLOAT,kHALF,,mse=6.65e-09,output:{inf / 2 / 1 / 0.666504 / 0.5}
+kFLOAT,kINT8,,mse=1.340277722225,output:{127 / 4 / 2 / 1 / 1}
+kFLOAT,kINT32,,mse=0.173611222225,output:{2.14748e+09 / 2 / 1 / 0 / 0}
+kFLOAT,kBOOL,,mse=0.340277722225,output:{1 / 1 / 1 / 1 / 1}
+network input data type,network  output data type,"input: {0.0f, 0.5f, 1.0f, 1.5f, 2.0f}
+期望输出：output:{inf / 2 / 1 / 0.666667 / 0.5}",,
+kHALF,kFLOAT,,mse=6.65e-09,output:{inf / 2 / 1 / 0.666504 / 0.5}
+kHALF,kHALF,,mse=6.65e-09,output:{inf / 2 / 1 / 0.666504 / 0.5}
+kHALF,kINT8,, mse=1.340277722225,output:{127 / 4 / 2 / 1 / 1}
+kHALF,kINT32,,mse=0.173611222225,output:{2.14748e+09 / 2 / 1 / 0 / 0}
+kHALF,kBOOL,,mse=0.340277722225,output:{1 / 1 / 1 / 1 / 1}
+network input data type,network  output data type,"input: {1, 2, 3, 4, 5}
+期望输出: output:{1 / 0.5 / 0.333333 / 0.25 / 0.2}",,
+kINT8,kFLOAT,,mse=0.28367732841999993,output:{1.98438 / 0.992188 / 0.661621 / 0.496094 / 0.396973}
+kINT8,kHALF,,mse=0.28367732841999993,output:{1.98438 / 0.992188 / 0.661621 / 0.496094 / 0.396973}
+kINT8,kINT8,,mse=2.57938897778,output:{4 / 2 / 1 / 1 / 1}
+kINT8,kINT32,,mse=0.09272217778,output:{1 / 0 / 0 / 0 / 0}
+kINT8,kBOOL,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,
+network input data type,network  output data type,"input: {1, 2, 3, 4, 5}
+期望输出: output:{1 / 0.5 / 0.333333 / 0.25 / 0.2}",,
+kINT32,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [Unary]: operation RECIP not allowed on type Int32,,
+kINT32,kHALF,,,
+kINT32,kINT8,,,
+kINT32,kINT32,,,
+kINT32,kBOOL,,,
+network input data type,network  output data type,"input: {true. false, true, false, true}
+期望输出: ?",,
+kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [Unary]: operation RECIP not allowed on type Bool,,
+kBOOL,kHALF,,,
+kBOOL,kINT8,,,
+kBOOL,kINT32,,,
+kBOOL,kBOOL,,,

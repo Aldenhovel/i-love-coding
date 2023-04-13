@@ -1,0 +1,37 @@
+kNOT,,,,
+User specified data type,,Error message,Loss of precision,More detail
+network input data type,network  output data type,"input: {0.0f, 0.5f, 1.0f, 1.5f, 2.0f}
+期望输出：?",,
+kFLOAT,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [Unary]: operation NOT not allowed on type Float,,
+kFLOAT,kHALF,,,
+kFLOAT,kINT8,,,
+kFLOAT,kINT32,,,
+kFLOAT,kBOOL,,,
+network input data type,network  output data type,"input: {0.0f, 0.5f, 1.0f, 1.5f, 2.0f}
+期望输出：?",,
+kHALF,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [Unary]: operation NOT not allowed on type Half,,
+kHALF,kHALF,,,
+kHALF,kINT8,,,
+kHALF,kINT32,,,
+kHALF,kBOOL,,,
+network input data type,network  output data type,"input: {1, 2, 3, 4, 5}
+期望输出：?",,
+kINT8,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [Unary]: operation NOT not allowed on type Int8,,
+kINT8,kHALF,,,
+kINT8,kINT8,,,
+kINT8,kINT32,,,
+kINT8,kBOOL,,,
+network input data type,network  output data type,"input: {1, 2, 3, 4, 5}
+期望输出：?",,
+kINT32,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [Unary]: operation NOT not allowed on type Int32,,
+kINT32,kHALF,,,
+kINT32,kINT8,,,
+kINT32,kINT32,,,
+kINT32,kBOOL,,,
+network input data type,network  output data type,"input: {true. false, true, false, true}
+期望输出: output:{0 / 1 / 0 / 1 / 0}",,
+kBOOL,kFLOAT,,mse=0.0,output:{0 / 1 / 0 / 1 / 0}
+kBOOL,kHALF,,mse=0.0,output:{0 / 1 / 0 / 1 / 0}
+kBOOL,kINT8,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,
+kBOOL,kINT32,,mse=0.0,output:{0 / 1 / 0 / 1 / 0}
+kBOOL,kBOOL,,mse=0.0,output:{0 / 1 / 0 / 1 / 0}

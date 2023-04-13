@@ -1,0 +1,37 @@
+kEXP,,,,
+User specified data type,,Error message,Loss of precision,More detail
+network input data type,network  output data type,"input: {0.0f, 0.5f, 1.0f, 1.5f, 2.0f}
+期望输出：{1 / 1.64872 / 2.71828 / 4.48169 / 7.38906}",,
+kFLOAT,kFLOAT,,mse=0.0,output:{1 / 1.64872 / 2.71828 / 4.48169 / 7.38906}
+kFLOAT,kHALF,,mse=8.4426e-07,output:{1 / 1.64844 / 2.71875 / 4.48047 / 7.39062}
+kFLOAT,kINT8,,mse=17.2747473473,output:{2 / 3 / 5 / 9 / 15}
+kFLOAT,kINT32,,mse=0.2640313473,output:{1 / 1 / 2 / 4 / 7}
+kFLOAT,kBOOL,,mse=11.263115347300001,output:{1 / 1 / 1 / 1 / 1}
+network input data type,network  output data type,"input: {0.0f, 0.5f, 1.0f, 1.5f, 2.0f}
+期望输出：{1 / 1.64872 / 2.71828 / 4.48169 / 7.38906}",,
+kHALF,kFLOAT,,mse=8.4426e-07,output:{1 / 1.64844 / 2.71875 / 4.48047 / 7.39062}
+kHALF,kHALF,,mse=8.4426e-07,output:{1 / 1.64844 / 2.71875 / 4.48047 / 7.39062}
+kHALF,kINT8,,mse=17.2747473473,output:{2 / 3 / 5 / 9 / 15}
+kHALF,kINT32,,mse=0.2640313473,output:{1 / 1 / 2 / 4 / 7}
+kHALF,kBOOL,,mse=11.263115347300001,output:{1 / 1 / 1 / 1 / 1}
+network input data type,network  output data type,"input: {1, 2, 3, 4, 5}
+期望输出: {2.71828 / 7.38906 / 20.0855 / 54.5981 / 148.413}",,
+kINT8,kFLOAT,,mse=620.54993725445,output:{1.65523 / 2.73977 / 4.53494 / 7.50634 / 12.4247}
+kINT8,kHALF,,mse=620.604354125175,output:{1.65527 / 2.74023 / 4.53516 / 7.50391 / 12.4219}
+kINT8,kINT8,,mse=424.17120192550004,output:{3 / 5 / 9 / 15 / 25}
+kINT8,kINT32,,mse=639.0792219255,output:{1 / 2 / 4 / 7 / 12}
+kINT8,kBOOL,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,
+network input data type,network  output data type,"input: {1, 2, 3, 4, 5}
+期望输出: {2.71828 / 7.38906 / 20.0855 / 54.5981 / 148.413}",,
+kINT32,kFLOAT,[TRT] (Unnamed Layer* 0) [Unary]: operation EXP not allowed on type Int32,,
+kINT32,kHALF,,,
+kINT32,kINT8,,,
+kINT32,kINT32,,,
+kINT32,kBOOL,,,
+network input data type,network  output data type,"input: {true. false, true, false, true}
+期望输出: ?",,
+kBOOL,kFLOAT,[TRT] (Unnamed Layer* 0) [Unary]: operation EXP not allowed on type Bool,,
+kBOOL,kHALF,,,
+kBOOL,kINT8,,,
+kBOOL,kINT32,,,
+kBOOL,kBOOL,,,

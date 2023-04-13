@@ -1,0 +1,38 @@
+﻿kSQRT,,,,
+User specified data type,,Error message,Loss of precision,More detail
+network input data type,network  output data type,"input: {0.0f, 0.5f, 1.0f, 1.5f, 2.0f}
+期望输出： output:{0 / 0.707107 / 1 / 1.22474 / 1.41421}",,
+kFLOAT,kFLOAT,,mse=0.0," output:{0 / 0.707107 / 1 / 1.22474 / 1.41421}
+"
+kFLOAT,kHALF,,mse=9.039999999999999e-09,output:{0 / 0.707031 / 1 / 1.22461 / 1.41406}
+kFLOAT,kINT8,,mse=0.8403088602200001,output:{0 / 1 / 2 / 2 / 3}
+kFLOAT,kINT32,,mse=0.14441566022000002,output:{0 / 0 / 1 / 1 / 1}
+kFLOAT,kBOOL,,mse=0.06157286021999999,output:{0 / 1 / 1 / 1 / 1}
+network input data type,network  output data type,"input: {0.0f, 0.5f, 1.0f, 1.5f, 2.0f}
+期望输出： output:{0 / 0.707107 / 1 / 1.22474 / 1.41421}",,
+kHALF,kFLOAT,,mse=9.039999999999999e-09,output:{0 / 0.707031 / 1 / 1.22461 / 1.41406}
+kHALF,kHALF,,mse=9.039999999999999e-09,output:{0 / 0.707031 / 1 / 1.22461 / 1.41406}
+kHALF,kINT8,,mse=0.8403088602200001,output:{0 / 1 / 2 / 2 / 3}
+kHALF,kINT32,,mse=0.14441566022000002,output:{0 / 0 / 1 / 1 / 1}
+kHALF,kBOOL,,mse=0.06157286021999999,output:{0 / 1 / 1 / 1 / 1}
+network input data type,network  output data type,"input: {1, 2, 3, 4, 5}
+期望输出: output:{1 / 1.41421 / 1.73205 / 2 / 2.23607}",,
+kINT8,kFLOAT,,mse=0.70105194484,output:{0.709961 / 1.00391 / 1.22949 / 1.41992 / 1.58691}
+kINT8,kHALF,,mse=0.70105194484,output:{0.709961 / 1.00391 / 1.22949 / 1.41992 / 1.58691}
+kINT8,kINT8,,mse=0.3997072343,output:{1 / 2 / 2 / 3 / 3}
+kINT8,kINT32,,mse=0.8470672343000001,output:{0 / 1 / 1 / 1 / 1}
+kINT8,kBOOL,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,
+network input data type,network  output data type,"input: {1, 2, 3, 4, 5}
+期望输出: output:{1 / 1.41421 / 1.73205 / 2 / 2.23607}",,
+kINT32,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [Unary]: operation SQRT not allowed on type Int32,,
+kINT32,kHALF,,,
+kINT32,kINT8,,,
+kINT32,kINT32,,,
+kINT32,kBOOL,,,
+network input data type,network  output data type,"input: {true. false, true, false, true}
+期望输出: ?",,
+kBOOL,kFLOAT, [E] [TRT] (Unnamed Layer* 0) [Unary]: operation SQRT not allowed on type Int32,,
+kBOOL,kHALF,,,
+kBOOL,kINT8,,,
+kBOOL,kINT32,,,
+kBOOL,kBOOL,,,
