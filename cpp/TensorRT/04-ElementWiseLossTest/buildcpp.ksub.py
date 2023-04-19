@@ -26,6 +26,7 @@ RAW_CPP_TXT = \
 #define OUT_VALUE_TYPE $OUT_VALUE_TYPE$
 
 std::string log_file_name = "$LOG_FILENAME$";
+int DATA_SIZE = 4;
 
 
 template<typename T>
@@ -116,11 +117,10 @@ bool SampleMNISTAPI::constructNetwork(SampleUniquePtr<nvinfer1::IBuilder>& build
 
     ITensor* tensors[] = {tensor1, tensor2};
 
-    IConcatenationLayer* concatLayer = network->addConcatenation(tensors, 2);
-    assert(concatLayer);
-    concatLayer->setAxis(mParams.concatDim);
+    IElementWiseLayer* opLayer = network->addElementWise(*tensor1, *tensor2, ElementWiseOperation::kSUB);
+    assert(opLayer);
 
-    IIdentityLayer* identityLayer = network->addIdentity(*concatLayer->getOutput(0));
+    IIdentityLayer* identityLayer = network->addIdentity(*opLayer->getOutput(0));
     identityLayer->setOutputType(0, mParams.outType);
     identityLayer->getOutput(0)->setType(mParams.outType);
     assert(identityLayer);
@@ -188,24 +188,24 @@ bool SampleMNISTAPI::processInput(const samplesCommon::BufferManager& buffers)
     $INIT_INPUT_DATA_B$
 
     std::cout << "\\nInput A:\\n" << std::endl;
-    for (int i = 0; i < mParams.input1_H * mParams.input1_W; i++)
+    for (int i = 0; i < DATA_SIZE; i++)
     {
-        std::cout << static_cast<float>(DataA[i]) << (((i + 1) % mParams.input1_W) ? " " : "\\n");
+        std::cout << static_cast<float>(DataA[i]) << "\\n";
     }
 
     std::cout << "\\nInput B:\\n" << std::endl;
-    for (int i = 0; i < mParams.input2_H * mParams.input2_W; i++)
+    for (int i = 0; i < DATA_SIZE; i++)
     {
-        std::cout << static_cast<float>(DataB[i]) << (((i + 1) % mParams.input2_W) ? " " : "\\n");
+        std::cout << static_cast<float>(DataB[i]) << "\\n";
     }
 
     IN_VALUE_TYPE_A* hostDataBuffer1 = static_cast<IN_VALUE_TYPE_A*>(buffers.getHostBuffer(mParams.inputTensorNames[0]));
     IN_VALUE_TYPE_B* hostDataBuffer2 = static_cast<IN_VALUE_TYPE_B*>(buffers.getHostBuffer(mParams.inputTensorNames[1]));
-    for (int i = 0; i < mParams.input1_H * mParams.input1_W; i++)
+    for (int i = 0; i < DATA_SIZE;i++)
     {
         hostDataBuffer1[i] = IN_VALUE_TYPE_A(DataA[i]);
     }
-    for (int i = 0; i < mParams.input2_H * mParams.input2_W; i++)
+    for (int i = 0; i < DATA_SIZE; i++)
     {
         hostDataBuffer2[i] = IN_VALUE_TYPE_B(DataB[i]);
     }
@@ -217,10 +217,10 @@ bool SampleMNISTAPI::processInput(const samplesCommon::BufferManager& buffers)
 bool SampleMNISTAPI::verifyOutput(const samplesCommon::BufferManager& buffers)
 {
     OUT_VALUE_TYPE* prob = static_cast<OUT_VALUE_TYPE*>(buffers.getHostBuffer(mParams.outputTensorNames[0]));
-    int dataSize = mParams.input1_H * mParams.input1_W + mParams.input2_H * mParams.input2_W;
-    std::vector<OUT_VALUE_TYPE> output(prob, prob + dataSize);
+
+    std::vector<OUT_VALUE_TYPE> output(prob, prob + DATA_SIZE);
     std::cout << "\\nOutput:\\n" << std::endl;
-    for (int i = 0; i < dataSize; i++) 
+    for (int i = 0; i < DATA_SIZE; i++) 
     {
         std::cout << static_cast<float>(output[i]) << std::endl;
     }
@@ -345,7 +345,7 @@ code_IN_VALUE_TYPE_B = typeSet_FN[typeSet.index(inTypeB)]
 code_OUT_TYPE = typeSet_TRT[typeSet.index(outType)]
 code_OUT_VALUE_TYPE = typeSet_FN[typeSet.index(outType)]
 
-code_LOG_FILENAME = f"./logs/{inTypeA}_{inTypeB}_{outType}_{data}_cat.txt"
+code_LOG_FILENAME = f"./logs/{inTypeA}_{inTypeB}_{outType}_{data}_ksub.txt"
 
 code_INIT_INPUT_DATA_A = ""
 if data[0] == "f":
