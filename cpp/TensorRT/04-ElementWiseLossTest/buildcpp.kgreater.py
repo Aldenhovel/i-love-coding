@@ -117,7 +117,7 @@ bool SampleMNISTAPI::constructNetwork(SampleUniquePtr<nvinfer1::IBuilder>& build
 
     ITensor* tensors[] = {tensor1, tensor2};
 
-    IElementWiseLayer* opLayer = network->addElementWise(*tensor1, *tensor2, ElementWiseOperation::kSUB);
+    IElementWiseLayer* opLayer = network->addElementWise(*tensor1, *tensor2, ElementWiseOperation::kGREATER);
     assert(opLayer);
 
     IIdentityLayer* identityLayer = network->addIdentity(*opLayer->getOutput(0));
@@ -345,7 +345,7 @@ code_IN_VALUE_TYPE_B = typeSet_FN[typeSet.index(inTypeB)]
 code_OUT_TYPE = typeSet_TRT[typeSet.index(outType)]
 code_OUT_VALUE_TYPE = typeSet_FN[typeSet.index(outType)]
 
-code_LOG_FILENAME = f"./logs/{inTypeA}_{inTypeB}_{outType}_{data}_ksub.txt"
+code_LOG_FILENAME = f"./logs/{inTypeA}_{inTypeB}_{outType}_{data}_kgreater.txt"
 
 code_INIT_INPUT_DATA_A = ""
 if data[0] == "f":
