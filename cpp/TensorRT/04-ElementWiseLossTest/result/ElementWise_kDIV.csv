@@ -1,0 +1,186 @@
+A dtype,B dtype,out dtype,A value,B value,out value,mse,details
+kFLOAT,kFLOAT,kFLOAT,"0.0f, 0.5f, 1.0f, 1.5f","0.0f, 0.5f, 1.0f, 1.5f","nan
+1
+1
+1",,
+kFLOAT,kFLOAT,kHALF,,,"nan
+1
+1
+1",,
+kFLOAT,kFLOAT,kINT8,,,"-128
+2
+2
+2",,
+kFLOAT,kFLOAT,kINT32,,,"0
+1
+1
+1",,
+kFLOAT,kFLOAT,kBOOL,,,"1
+1
+1
+1",,
+,,,,,,,
+kFLOAT,kHALF,kFLOAT,"0.0f, 0.5f, 1.0f, 1.5f","0.0f, 0.5f, 1.0f, 1.5f","nan
+1
+1
+1",,
+kFLOAT,kHALF,kHALF,,,"nan
+1
+1
+1",,
+kFLOAT,kHALF,kINT8,,,"-128
+2
+2
+2",,
+kFLOAT,kHALF,kINT32,,,"0
+1
+1
+1",,
+kFLOAT,kHALF,kBOOL,,,"1
+1
+1
+1",,
+,,,,,,,
+kFLOAT,kINT8,kFLOAT,"0.0f, 0.5f, 1.0f, 1.5f","1, 2, 3, 4","0
+0.496094
+0.661458
+0.744141",,
+kFLOAT,kINT8,kHALF,,,"0
+0.496094
+0.661621
+0.744141",,
+kFLOAT,kINT8,kINT8,,,"0
+1
+1
+1",,
+kFLOAT,kINT8,kINT32,,,"0
+0
+0
+0",,
+kFLOAT,kINT8,kBOOL,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+,,,,,,,
+kFLOAT,kINT32,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation DIV has incompatible input types Float and Int32,,,,
+kFLOAT,kINT32,kHALF,,,,,
+kFLOAT,kINT32,kINT8,,,,,
+kFLOAT,kINT32,kINT32,,,,,
+kFLOAT,kINT32,kBOOL,,,,,
+,,,,,,,
+kFLOAT,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation DIV has incompatible input types Float and Bool,,,,
+kFLOAT,kBOOL,kHALF,,,,,
+kFLOAT,kBOOL,kINT8,,,,,
+kFLOAT,kBOOL,kINT32,,,,,
+kFLOAT,kBOOL,kBOOL,,,,,
+,,,,,,,
+kHALF,kHALF,kFLOAT,"0.0f, 0.5f, 1.0f, 1.5f","0.0f, 0.5f, 1.0f, 1.5f","nan
+1
+1
+1",,
+kHALF,kHALF,kHALF,,,"nan
+1
+1
+1",,
+kHALF,kHALF,kINT8,,,"-128
+2
+2
+2",,
+kHALF,kHALF,kINT32,,,"0
+1
+1
+1",,
+kHALF,kHALF,kBOOL,,,"1
+1
+1
+1",,
+,,,,,,,
+kHALF,kINT8,kFLOAT,"0.0f, 0.5f, 1.0f, 1.5f","1, 2, 3, 4","0
+0.496094
+0.661621
+0.744141",,
+kHALF,kINT8,kHALF,,,"0
+0.496094
+0.661621
+0.744141",,
+kHALF,kINT8,kINT8,,,"0
+1
+1
+1",,
+kHALF,kINT8,kINT32,,,"0
+0
+0
+0",,
+kHALF,kINT8,kBOOL,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+,,,,,,,
+kHALF,kINT32,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation DIV has incompatible input types Half and Int32,,,,
+kHALF,kINT32,kHALF,,,,,
+kHALF,kINT32,kINT8,,,,,
+kHALF,kINT32,kINT32,,,,,
+kHALF,kINT32,kBOOL,,,,,
+,,,,,,,
+kHALF,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation DIV has incompatible input types Half and Bool,,,,
+kHALF,kBOOL,kHALF,,,,,
+kHALF,kBOOL,kINT8,,,,,
+kHALF,kBOOL,kINT32,,,,,
+kHALF,kBOOL,kBOOL,,,,,
+,,,,,,,
+kINT8,kINT8,kFLOAT,"1, 2, 3, 4","1, 2, 3, 4","1
+1
+1
+1",,
+kINT8,kINT8,kHALF,,,"1
+1
+1
+1",,
+kINT8,kINT8,kINT8,,,"2
+2
+2
+2",,
+kINT8,kINT8,kINT32,,,"1
+1
+1
+1",,
+kINT8,kINT8,kBOOL,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+,,,,,,,
+kINT8,kINT32,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation DIV has incompatible input types Int8 and Int32,,,,
+kINT8,kINT32,kHALF,,,,,
+kINT8,kINT32,kINT8,,,,,
+kINT8,kINT32,kINT32,,,,,
+kINT8,kINT32,kBOOL,,,,,
+,,,,,,,
+kINT8,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation DIV has incompatible input types Int8 and Bool,,,,
+kINT8,kBOOL,kHALF,,,,,
+kINT8,kBOOL,kINT8,,,,,
+kINT8,kBOOL,kINT32,,,,,
+kINT8,kBOOL,kBOOL,,,,,
+,,,,,,,
+kINT32,kINT32,kFLOAT,"1, 2, 3, 4","1, 2, 3, 4","1
+1
+1
+1",,
+kINT32,kINT32,kHALF,,,"1
+1
+1
+1",,
+kINT32,kINT32,kINT8,,,"2
+2
+2
+2",,
+kINT32,kINT32,kINT32,,,"1
+1
+1
+1",,
+kINT32,kINT32,kBOOL,,,"1
+1
+1
+1",,
+,,,,,,,
+kINT32,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation DIV has incompatible input types Int32 and Bool,,,,
+kINT32,kBOOL,kHALF,,,,,
+kINT32,kBOOL,kINT8,,,,,
+kINT32,kBOOL,kINT32,,,,,
+kINT32,kBOOL,kBOOL,,,,,
+,,,,,,,
+kBOOL,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation DIV requires inputs with activation or Int32 type.,,,,
+kBOOL,kBOOL,kHALF,,,,,
+kBOOL,kBOOL,kINT8,,,,,
+kBOOL,kBOOL,kINT32,,,,,
+kBOOL,kBOOL,kBOOL,,,,,

@@ -1,0 +1,138 @@
+A dtype,B dtype,out dtype,A value,B value,out value,mse,details
+kFLOAT,kFLOAT,kFLOAT,"0.0f, 0.5f, 1.0f, 1.5f","0.0f, 0.5f, 1.0f, 1.5f","0
+0
+0
+0",,
+kFLOAT,kFLOAT,kHALF,,,"0
+0
+0
+0",,
+kFLOAT,kFLOAT,kINT8,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+kFLOAT,kFLOAT,kINT32,"0.0f, 0.5f, 1.0f, 1.5f","0.0f, 0.5f, 1.0f, 1.5f","0
+0
+0
+0",,
+kFLOAT,kFLOAT,kBOOL,,,"0
+0
+0
+0",,
+,,,,,,,
+kFLOAT,kHALF,kFLOAT,"0.0f, 0.5f, 1.0f, 1.5f","0.0f, 0.5f, 1.0f, 1.5f","0
+0
+0
+0",,
+kFLOAT,kHALF,kHALF,,,"0
+0
+0
+0",,
+kFLOAT,kHALF,kINT8,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+kFLOAT,kHALF,kINT32,"0.0f, 0.5f, 1.0f, 1.5f","0.0f, 0.5f, 1.0f, 1.5f","0
+0
+0
+0",,
+kFLOAT,kHALF,kBOOL,,,"0
+0
+0
+0",,
+,,,,,,,
+kFLOAT,kINT8,kFLOAT,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+kFLOAT,kINT8,kHALF,,,,,
+kFLOAT,kINT8,kINT8,,,,,
+kFLOAT,kINT8,kINT32,,,,,
+kFLOAT,kINT8,kBOOL,,,,,
+,,,,,,,
+kFLOAT,kINT32,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation GREATER has incompatible input types Float and Int32,,,,
+kFLOAT,kINT32,kHALF,,,,,
+kFLOAT,kINT32,kINT8,,,,,
+kFLOAT,kINT32,kINT32,,,,,
+kFLOAT,kINT32,kBOOL,,,,,
+,,,,,,,
+kFLOAT,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation GREATER has incompatible input types Float and Bool,,,,
+kFLOAT,kBOOL,kHALF,,,,,
+kFLOAT,kBOOL,kINT8,,,,,
+kFLOAT,kBOOL,kINT32,,,,,
+kFLOAT,kBOOL,kBOOL,,,,,
+,,,,,,,
+kHALF,kHALF,kFLOAT,"0.0f, 0.5f, 1.0f, 1.5f","0.0f, 0.5f, 1.0f, 1.5f","0
+0
+0
+0",,
+kHALF,kHALF,kHALF,,,"0
+0
+0
+0",,
+kHALF,kHALF,kINT8,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+kHALF,kHALF,kINT32,"0.0f, 0.5f, 1.0f, 1.5f","0.0f, 0.5f, 1.0f, 1.5f","0
+0
+0
+0",,
+kHALF,kHALF,kBOOL,,,"0
+0
+0
+0",,
+,,,,,,,
+kHALF,kINT8,kFLOAT,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+kHALF,kINT8,kHALF,,,,,
+kHALF,kINT8,kINT8,,,,,
+kHALF,kINT8,kINT32,,,,,
+kHALF,kINT8,kBOOL,,,,,
+,,,,,,,
+kHALF,kINT32,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation GREATER has incompatible input types Half and Int32,,,,
+kHALF,kINT32,kHALF,,,,,
+kHALF,kINT32,kINT8,,,,,
+kHALF,kINT32,kINT32,,,,,
+kHALF,kINT32,kBOOL,,,,,
+,,,,,,,
+kHALF,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation GREATER has incompatible input types Half and Bool,,,,
+kHALF,kBOOL,kHALF,,,,,
+kHALF,kBOOL,kINT8,,,,,
+kHALF,kBOOL,kINT32,,,,,
+kHALF,kBOOL,kBOOL,,,,,
+,,,,,,,
+kINT8,kINT8,kFLOAT,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+kINT8,kINT8,kHALF,,,,,
+kINT8,kINT8,kINT8,,,,,
+kINT8,kINT8,kINT32,,,,,
+kINT8,kINT8,kBOOL,,,,,
+,,,,,,,
+kINT8,kINT32,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation GREATER has incompatible input types Int8 and Int32,,,,
+kINT8,kINT32,kHALF,,,,,
+kINT8,kINT32,kINT8,,,,,
+kINT8,kINT32,kINT32,,,,,
+kINT8,kINT32,kBOOL,,,,,
+,,,,,,,
+kINT8,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation GREATER has incompatible input types Int8 and Bool,,,,
+kINT8,kBOOL,kHALF,,,,,
+kINT8,kBOOL,kINT8,,,,,
+kINT8,kBOOL,kINT32,,,,,
+kINT8,kBOOL,kBOOL,,,,,
+,,,,,,,
+kINT32,kINT32,kFLOAT,"1, 2, 3, 4","1, 2, 3, 4","0
+0
+0
+0",,
+kINT32,kINT32,kHALF,,,"0
+0
+0
+0",,
+kINT32,kINT32,kINT8,[E] [TRT] ../builder/cudnnBuilder2.cpp (1917) - Assertion Error in makePaddedScale: 0 (regionRanges != nullptr),,,,
+kINT32,kINT32,kINT32,"1, 2, 3, 4","1, 2, 3, 4","0
+0
+0
+0",,
+kINT32,kINT32,kBOOL,,,"0
+0
+0
+0",,
+,,,,,,,
+kINT32,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation GREATER has incompatible input types Int32 and Bool,,,,
+kINT32,kBOOL,kHALF,,,,,
+kINT32,kBOOL,kINT8,,,,,
+kINT32,kBOOL,kINT32,,,,,
+kINT32,kBOOL,kBOOL,,,,,
+,,,,,,,
+kBOOL,kBOOL,kFLOAT,[E] [TRT] (Unnamed Layer* 0) [ElementWise]: operation GREATER requires inputs with activation or Int32 type.,,,,
+kBOOL,kBOOL,kHALF,,,,,
+kBOOL,kBOOL,kINT8,,,,,
+kBOOL,kBOOL,kINT32,,,,,
+kBOOL,kBOOL,kBOOL,,,,,
