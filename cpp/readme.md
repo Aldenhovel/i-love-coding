@@ -32,22 +32,22 @@
 
 与 `STL` 和 `std::` 下有关的零碎部分，在目录 `std/` 下。
 
-| 目录 `std/...` |                 概述                  |      |
-| :------------: | :-----------------------------------: | ---- |
-|    `chrono`    |        C++ 高精度时间相关的库         |      |
-| `type_traits`  | C++11 类型判断 `is_same` `decay` 使用 |      |
+| 目录 `std/...` |                 概述                  |                             链接                             |
+| :------------: | :-----------------------------------: | :----------------------------------------------------------: |
+|    `chrono`    |        C++ 高精度时间相关的库         | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/std/chrono) |
+| `type_traits`  | C++11 类型判断 `is_same` `decay` 使用 | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/std/type_traits) |
 
 ## TensorRT C++
 
 使用 C/C++ API 开发与部署 Nvidia TensorRT 神经网络模型，在目录 `TensorRT/` 下 。
 
-| 目录 `TensorRT/...` |                             概述                             |      |
-| :-----------------: | :----------------------------------------------------------: | ---- |
-| `00-sampleMNISTAPI` | 简单地介绍了使用 TensorRT API 搭建网络的方法，和加载 Caffe 模型的方法并对 MNIST 图像推理。 |      |
-|     `01-ABSNet`     |     仿照 `sampleMNISTAPI.cpp` 将搭建一个 ABS 算子网络。      |      |
-|   `02-ConcatNet`    | 仿照 `sampleMNISTAPI.cpp` 将搭建一个 Concatenation 算子网络。 |      |
-|  `03-UnaryLossTest` | 修改 `sampleMNISTAPI.cpp` 为 `losstest.cpp` 可以测试不同 `UnaryOperation` 算子在转换精度后的损失。 |     |
-| `04-ElementWiseLossTest` | 测试 `IEelementWiseLayer` 算子例如 `kSUM` `kPROD` `kSUB` `kDIV` 和 `IConcatenationLayer` 在输入数据`f` `h` `i8` `i32` `bool` 下的转换的出错情况和精度损失。 | |
+| 目录 `TensorRT/...` |                             概述                             | 链接 |
+| :-----------------: | :----------------------------------------------------------: | :--: |
+| `00-sampleMNISTAPI` | 简单地介绍了使用 TensorRT API 搭建网络的方法，和加载 Caffe 模型的方法并对 MNIST 图像推理。 | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/TensorRT/00-smapleMNISTAPI) |
+|     `01-ABSNet`     |     仿照 `sampleMNISTAPI.cpp` 将搭建一个 ABS 算子网络。      | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/TensorRT/01-ABSNet) |
+|   `02-ConcatNet`    | 仿照 `sampleMNISTAPI.cpp` 将搭建一个 Concatenation 算子网络。 | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/TensorRT/02-ConcatNet) |
+|  `03-UnaryLossTest` | 修改 `sampleMNISTAPI.cpp` 为 `losstest.cpp` 可以测试不同 `UnaryOperation` 算子在转换精度后的损失。 | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/TensorRT/03-UnaryLossTest) |
+| `04-ElementWiseLossTest` | 测试 `IEelementWiseLayer` 算子例如 `kSUM` `kPROD` `kSUB` `kDIV` 和 `IConcatenationLayer` 在输入数据`f` `h` `i8` `i32` `bool` 下的转换的出错情况和精度损失。 | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/TensorRT/04-ElementWiseLossTest) |
 
 ## Q&A
 
