@@ -47,7 +47,7 @@
 |     `01-ABSNet`     |     仿照 `sampleMNISTAPI.cpp` 将搭建一个 ABS 算子网络。      |      |
 |   `02-ConcatNet`    | 仿照 `sampleMNISTAPI.cpp` 将搭建一个 Concatenation 算子网络。 |      |
 |  `03-UnaryLossTest` | 修改 `sampleMNISTAPI.cpp` 为 `losstest.cpp` 可以测试不同 `UnaryOperation` 算子在转换精度后的损失。 |     |
-| `04-ElementWiseLossTest` | 在 `03` 的基础上测试更多算子，例如 `sum` `matmul` `concat` 等转换精度后的损失。（待完成） | |
+| `04-ElementWiseLossTest` | 测试 `IEelementWiseLayer` 算子例如 `kSUM` `kPROD` `kSUB` `kDIV` 和 `IConcatenationLayer` 在输入数据`f` `h` `i8` `i32` `bool` 下的转换的出错情况和精度损失。 | |
 
 ## Q&A
 

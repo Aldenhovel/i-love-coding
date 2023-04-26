@@ -502,16 +502,17 @@
    python buildcpp.$1.py -a b -b b -o i32 -d bb && sh $TRT_SOURCE/build/check.sh 2>&1 | tee -a $1.log
    python buildcpp.$1.py -a b -b b -o b -d bb && sh $TRT_SOURCE/build/check.sh 2>&1 | tee -a $1.log
    
-```
+   ```
+
 
 3. `sh` 命令参数与 `buildcpp` 对应，例如测试 `kSUB` :
 
    ```shell
    sh runtest.sh ksub
    ```
-
+   
    脚本会自动寻找 `buildcpp.ksub.py` 并将 log 输出到 `ksub.log` 中。
-
+   
 4. 完成后在对应的 log 文件中使用 `ctrl+f` 查找错误。
 
 ## 快速定位错误
