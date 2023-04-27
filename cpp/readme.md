@@ -48,6 +48,7 @@
 |   `02-ConcatNet`    | 仿照 `sampleMNISTAPI.cpp` 将搭建一个 Concatenation 算子网络。 | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/TensorRT/02-ConcatNet) |
 |  `03-UnaryLossTest` | 修改 `sampleMNISTAPI.cpp` 为 `losstest.cpp` 可以测试不同 `UnaryOperation` 算子在转换精度后的损失。 | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/TensorRT/03-UnaryLossTest) |
 | `04-ElementWiseLossTest` | 测试 `IEelementWiseLayer` 算子例如 `kSUM` `kPROD` `kSUB` `kDIV` 和 `IConcatenationLayer` 在输入数据`f` `h` `i8` `i32` `bool` 下的转换的出错情况和精度损失。 | [GO](https://github.com/Aldenhovel/i-love-coding/tree/main/cpp/TensorRT/04-ElementWiseLossTest) |
+| `05-PythonResNet50` | 测试 `TensorRT 7.2.3(21.04)`的 Python 模型样本能否工作 |  |
 
 ## Q&A
 
