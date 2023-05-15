@@ -1,27 +1,49 @@
 import torch
 import torch.nn as nn
 from torch.nn.utils.rnn import pack_padded_sequence
+import pandas as pd
 
 from .DataReader import DataReader
 from .Tokenizer import Tokenizer
 
 class Inference():
     
-    def __init__(self, model, device=torch.device("cuda:0")):
+    def __init__(self, model, device=torch.device("cpu")):
         self.model = model
         self.device = device
         self.reader = DataReader(datadir="data/test")
         self.tk = Tokenizer()
+        
+        
+    def max_drawdown(self, arr):
+        df_seq = pd.DataFrame(arr)
+        df_seq = df_seq.cumsum(axis=0)
+        arr = list(df_seq[0])
+        mdd = []
+        for i in range(0, len(arr) - 1):
+            mdd.append(min(arr[i+1:]) - arr[i])
+        return abs(min(mdd))
+
+    def max_drawup(self, arr):
+        df_seq = pd.DataFrame(arr)
+        df_seq = df_seq.cumsum(axis=0)
+        arr = list(df_seq[0])
+        mdu = []
+        for i in range(0, len(arr)-1):
+            mdu.append(max(arr[i+1:]) - arr[i])
+        return abs(max(mdu))
         
     def predict_one(self, yaml_path, beam_size=20, predict_step=5):
         self.model.eval()
         with torch.no_grad():
             data = self.reader.readyaml(yaml_path)
             seq = data["stdchange"]
+            mdd = self.max_drawdown(seq[-30:])
+            mdu = self.max_drawup(seq[-30:])
             seq, seqlen = self.tk.tokenize(seq)
             seq = torch.Tensor(seq).long().to(self.device)
-            _, avgpred, _, avgpdf = self.beam_search(seq, seqlen, beam_size=beam_size, predict_step=predict_step)
-        return avgpred
+            _, avgpred, _ = self.beam_search(seq, seqlen, beam_size=beam_size, predict_step=predict_step)
+        return avgpred, mdu, mdd
         
     def beam_search(self, seq, seqlen, beam_size, predict_step):
         self.model.eval()
@@ -46,13 +68,12 @@ class Inference():
             while True:         
                 logit, h_state, c_state = self.model.decode(topk_prev_tokens.squeeze(1), h_state, c_state)
                 logp = torch.nn.functional.softmax(logit, dim=1) # [k, vocab_size]
-                pdf = logp
                 logp = topk_logps.expand_as(logp) + logp  # [k, vocab_size]
                 if step == 1:
                     topk_logps, topk_tokens = logp[0].topk(k, 0, True, True)  # [k,]
                 else:
                     topk_logps, topk_tokens = logp.view(-1).topk(k, 0, True, True)  # [k,]
-                prev_tokens = topk_tokens // self.model.vocab_size  # [k,]
+                prev_tokens = torch.div(topk_tokens, self.model.vocab_size, rounding_mode='floor')
                 next_tokens = topk_tokens % self.model.vocab_size
                 topk_sequences = torch.cat((topk_sequences[prev_tokens], next_tokens.unsqueeze(1)), dim=1) # [k, step + 1]
                 incomplete_indices = [indice for indice, next_token in enumerate(next_tokens)]
@@ -81,12 +102,8 @@ class Inference():
                 complete_sequences[i] = [*map(lambda x: x - 1, complete_sequences[i])]
                 res.append(complete_sequences[i])     
             res = [*map(lambda x: x[1:], res)]
-            avgpred = sum([*map(lambda x: sum(x) / len(x), res)]) / len(i_s)
-            avgpdf = []
-            for beam in pdf:
-                avgpdf.append(sum([*map(lambda x: x[0][0] * x[0][1] ,[*zip(enumerate(beam))])]))
-            avgpdf = sum(avgpdf) / beam_size
-            return res, avgpred, current, avgpdf
+            avgpred = sum([*map(lambda x: sum(x) / len(x), res)]) / len(res)
+            return res, avgpred, current
 
 
 
