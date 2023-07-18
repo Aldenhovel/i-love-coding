@@ -33,4 +33,7 @@
 - [117. 填充每个节点的下一个右侧节点指针 II](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/117.md)
 - [416. 分割等和子集](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/416.md)
 - [2. 两数相加](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/2.md)
+- [3.无重复字符的最长子串](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/3.md)
+- [18.四数之和](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/18.md)
+- [139.单词拆分](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/139.md)
 
