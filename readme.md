@@ -23,6 +23,7 @@
 - [226. 翻转二叉树](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/226.md)
 - [1688.比赛中的配对次数](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1688.md)
 - [1752. 检查数组是否经排序和轮转得到](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1752.md)
+- [1652. 拆炸弹](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1652.md)
 
 ### Medium
 - [面试题 17.11. 单词距离](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/mst17.11.md)
@@ -40,4 +41,5 @@
 - [139.单词拆分](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/139.md)
 - [5.最长回文子串](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/5.md)
 - [98.验证二叉搜索树](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/98.md)
+- [1552. 两球之间的磁力](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/1552.md)
 
