@@ -25,7 +25,7 @@
 - [1752. 检查数组是否经排序和轮转得到](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1752.md)
 - [1652. 拆炸弹](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1652.md)
 - [844. 比较含退格的字符串](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/844.md)
-- [145.二叉树的后序遍历]
+- [145.二叉树的后序遍历](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/145.md)
 
 ### Medium
 - [面试题 17.11. 单词距离](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/mst17.11.md)
@@ -47,11 +47,11 @@
 - [1855. 下标对中的最大距离](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/1855.md)
 - [384. 打乱数组](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/384.md)
 - [429. N 叉树的层序遍历](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/429.md)
-- [15.三数之和]
-- [2545.根据第 K 场考试的分数排序]
-- [55.跳跃游戏]
-- [62.不同路径]
-- [863.二叉树中所有距离为 K 的结点]
-- [886.可能的二分法]
-- [979.在二叉树中分配硬币]
+- [15.三数之和](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/15.md)
+- [2545.根据第 K 场考试的分数排序](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/2545.md)
+- [55.跳跃游戏](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/55.md)
+- [62.不同路径](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/62.md)
+- [863.二叉树中所有距离为 K 的结点](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/863.md)
+- [886.可能的二分法](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/886.md)
+- [979.在二叉树中分配硬币](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/979.md)
 
