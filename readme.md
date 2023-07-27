@@ -54,4 +54,14 @@
 - [863.二叉树中所有距离为 K 的结点](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/863.md)
 - [886.可能的二分法](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/886.md)
 - [979.在二叉树中分配硬币](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/979.md)
+- [63](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/63.md)
+- [64](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/64.md)
+- [120](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/120.md)
+- [931](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/931.md)
+
+### Hard
+
+- [1289](https://github.com/Aldenhovel/i-love-coding/blob/main/hard/1289.md)
+
+
 
