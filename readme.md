@@ -26,6 +26,11 @@
 - [1652. 拆炸弹](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/1652.md)
 - [844. 比较含退格的字符串](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/844.md)
 - [145.二叉树的后序遍历](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/145.md)
+- [35. 搜索插入位置](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/35.md)
+- [70. 爬楼梯](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/70.md)
+- [202. 快乐数](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/202.md)
+- [349. 两个数组的交集](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/349.md)
+- [860. 柠檬水找零](https://github.com/Aldenhovel/i-love-coding/blob/main/easy/860.md)
 
 ### Medium
 - [面试题 17.11. 单词距离](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/mst17.11.md)
@@ -54,10 +59,15 @@
 - [863.二叉树中所有距离为 K 的结点](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/863.md)
 - [886.可能的二分法](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/886.md)
 - [979.在二叉树中分配硬币](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/979.md)
-- [63](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/63.md)
-- [64](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/64.md)
-- [120](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/120.md)
-- [931](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/931.md)
+- [63. 不同路径 II](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/63.md)
+- [64. 最小路径和](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/64.md)
+- [120. 三角形最小路径和](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/120.md)
+- [931. 下降路径最小和](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/931.md)
+- [49. 字母异位词分组](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/49.md)
+- [6. N 字形变换](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/6.md)
+- [50. Pow(x, n)](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/50.md)
+- [494. 目标和](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/494.md)
+- [1911. 最大子序列交替和](https://github.com/Aldenhovel/i-love-coding/blob/main/medium/1911.md)
 
 ### Hard
 
